@@ -171,6 +171,22 @@ def employees_report():
                         print("[INFO] Error. employees report error. Reason: ", _ex)
 
 
+def update_task(task_id: int, deadline: str = None, executor_id: int = None, priority: int = None, status: str = None):
+        with connection.cursor() as cursor:
+                try:
+                        if(deadline != None):
+                                cursor.execute(f'UPDATE task SET deadline = \'{deadline}\' WHERE task_id = {task_id}')
+                        if (executor_id != None):
+                                cursor.execute(f'UPDATE task SET executor_employee_id = {executor_id} WHERE task_id = {task_id}')
+                        if (priority != None):
+                                cursor.execute(f'UPDATE task SET priority = {priority} WHERE task_id = {task_id}')
+                        if (status != None):
+                                cursor.execute(f'UPDATE task SET status = \'{status}\' WHERE task_id = {task_id}')
+                        print('Task updated succesfully')
+                except Exception as _ex:
+                        print("[INFO] Error. New task not added. Reason: ", _ex)
+
+
 
 try:
         # connect to exist database
@@ -199,6 +215,7 @@ try:
         #view_clients()
         #tasks_report()
         #employees_report()
+        #update_task(15, status='finished')
 
 
 
