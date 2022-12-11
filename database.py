@@ -186,6 +186,170 @@ def update_task(task_id: int, deadline: str = None, executor_id: int = None, pri
                 except Exception as _ex:
                         print("[INFO] Error. New task not added. Reason: ", _ex)
 
+# Фильтр по таскам
+def filter_tasks(author_id: int = None, executor_id: int = None, task_id: int = None, priority: int = None, status: str = None, contract_id: int = None):
+        with connection.cursor() as cursor:
+                try:
+                        query_str = f'SELECT * FROM public.task'
+                        s = 0
+                        if author_id != None:
+                                query_str+=f' WHERE author_employee_id = {author_id}'
+                                s+=1
+                        if executor_id != None:
+                                if s==0:
+                                        query_str += f' WHERE executor_employee_id = {executor_id}'
+                                else:
+                                        query_str += f' AND executor_employee_id = {executor_id}'
+                                s += 1
+                        if task_id != None:
+                                if s == 0:
+                                        query_str += f' WHERE task_id = {task_id}'
+                                else:
+                                        query_str += f' AND task_id = {task_id}'
+                                s += 1
+                        if priority != None:
+                                if s == 0:
+                                        query_str += f' WHERE priority = {priority}'
+                                else:
+                                        query_str += f' AND priority = {priority}'
+                                s += 1
+                        if status != None:
+                                if s == 0:
+                                        query_str += f' WHERE status = {status}'
+                                else:
+                                        query_str += f' AND status = {status}'
+                                s += 1
+                        if contract_id !=None:
+                                if s == 0:
+                                        query_str += f' WHERE contract_id = {contract_id}'
+                                else:
+                                        query_str += f' AND contract_id = {contract_id}'
+                                s += 1
+
+
+                        cursor.execute(query_str)
+                        filtered_tasks = cursor.fetchall()
+
+                        print('Filtered tasks:')
+                        for row in filtered_tasks:
+                                print("deadline = ", row[0], )
+                                print("appointment_date = ", row[1])
+                                print("executor_employee_id = ", row[2])
+                                print("author_employee_id = ", row[3])
+                                print("task_id = ", row[4])
+                                print("task_description = ", row[5])
+                                print("priority = ", row[6])
+                                print("status = ", row[7])
+                                print("contract_id = ", row[8], "\n")
+
+                except Exception as _ex:
+                        print("[INFO] Error. Task filter error. Reason: ", _ex)
+
+
+# Фильтр по таскам
+def filter_client(company_name: str = None, city: str = None, email: str = None, phone: int = None):
+        with connection.cursor() as cursor:
+                try:
+                        query_str = f'SELECT * FROM public.client'
+                        s = 0
+                        if company_name != None:
+                                query_str+=f' WHERE company_name = \'{company_name}\''
+                                s+=1
+                        if city != None:
+                                if s==0:
+                                        query_str += f' WHERE registration_city = \'{city}\''
+                                else:
+                                        query_str += f' AND registration_city = \'{city}\''
+                                s += 1
+                        if email != None:
+                                if s == 0:
+                                        query_str += f' WHERE email = \'{email}\''
+                                else:
+                                        query_str += f' AND email = \'{email}\''
+                                s += 1
+                        if phone != None:
+                                if s == 0:
+                                        query_str += f' WHERE phone_number = {phone}'
+                                else:
+                                        query_str += f' AND phone_number = {phone}'
+                                s += 1
+
+
+                        cursor.execute(query_str)
+                        filtered_clients = cursor.fetchall()
+
+                        print('Filtered tasks:')
+                        for row in filtered_clients:
+                                print("client_id = ", row[0], )
+                                print("phone_number = ", row[1])
+                                print("email = ", row[2])
+                                print("company_name = ", row[3])
+                                print("client_status = ", row[4])
+                                print("registration_city = ", row[5], "\n")
+
+                except Exception as _ex:
+                        print("[INFO] Error. Client filter error. Reason: ", _ex)
+
+
+# Фильтр по таскам
+def filter_employee(first_name: str = None, second_name: str = None, patronymyc: str = None, phone: int = None, email: str = None, role: str = None):
+        with connection.cursor() as cursor:
+                try:
+                        query_str = f'SELECT * FROM public.employee'
+                        s = 0
+                        if first_name != None:
+                                query_str+=f' WHERE first_name = \'{first_name}\''
+                                s+=1
+                        if second_name != None:
+                                if s==0:
+                                        query_str += f' WHERE last_name = \'{second_name}\''
+                                else:
+                                        query_str += f' AND last_name = \'{second_name}\''
+                                s += 1
+                        if patronymyc != None:
+                                if s == 0:
+                                        query_str += f' WHERE patronymyc = \'{patronymyc}\''
+                                else:
+                                        query_str += f' AND patronymyc = \'{patronymyc}\''
+                                s += 1
+                        if phone != None:
+                                if s == 0:
+                                        query_str += f' WHERE phone_number = {phone}'
+                                else:
+                                        query_str += f' AND phone_number = {phone}'
+                                s += 1
+                        if email != None:
+                                if s == 0:
+                                        query_str += f' WHERE email = \'{email}\''
+                                else:
+                                        query_str += f' AND email = \'{email}\''
+                                s += 1
+                        if role != None:
+                                if s == 0:
+                                        query_str += f' WHERE job_title = \'{role}\''
+                                else:
+                                        query_str += f' AND job_title = \'{role}\''
+                                s += 1
+
+
+                        cursor.execute(query_str)
+                        filtered_employees = cursor.fetchall()
+
+                        print('Filtered employees:')
+                        for row in filtered_employees:
+                                print("job_title = ", row[0], )
+                                print("first_name = ", row[1])
+                                print("last_name = ", row[2])
+                                print("patronymyc = ", row[3])
+                                print("phone_number = ", row[4])
+                                print("email = ", row[5])
+                                print("employee_id = ", row[6])
+                                print("username = ", row[7])
+                                print("password = ", row[8], "\n")
+
+                except Exception as _ex:
+                        print("[INFO] Error. Employee filter error. Reason: ", _ex)
+
 
 
 try:
@@ -216,6 +380,9 @@ try:
         #tasks_report()
         #employees_report()
         #update_task(15, status='finished')
+        #filter_tasks(1)
+        #filter_client('Company_1', city='Chicago')
+        #filter_employee(role='manager', first_name='Дмитрий')
 
 
 
