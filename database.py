@@ -395,6 +395,16 @@ def get_job_title_and_id_by_username(username: int):
                                 print("[INFO] get_job_title_and_id_by_username error. Reason: ", _ex)
 
 
+#4. Создание заявок
+def add_new_client(client_id: int, phone_number: int, email: str, company_name: str, client_status: str, registration_city: str):
+        with connection.cursor() as cursor:
+                try:
+                        cursor.execute(f'INSERT INTO client (client_id, phone_number, email, company_name, client_status, registration_city) VALUES ({client_id}, {phone_number}, \'{email}\', \'{company_name}\', \'{client_status}\', \'{registration_city}\')')
+                        print('New client added succesfully')
+                except Exception as _ex:
+                        print("[INFO] Error. New client not added. Reason: ", _ex)
+
+
 
 
 try:
@@ -430,6 +440,7 @@ try:
         #filter_employee(role='manager', first_name='Дмитрий')
         #get_job_title_by_employee_id(1)
         #get_job_title_and_id_by_username('manager_1')
+        #add_new_client(4, 88005553535, 'mail27@mail.ru', 'Company_4', 'current', 'Dallas')
 
 
 
