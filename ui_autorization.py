@@ -103,7 +103,7 @@ class Ui_Login(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Myriad Pro\'; font-size:25px; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Tahoma\'; font-size:22pt;\">SETTINGS</span></p></body></html>"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Tahoma\'; font-size:22pt;\">PROFILE</span></p></body></html>"))
         self.pushButton.setText(_translate("Login", "Login"))
         self.pushButton_2.setText(_translate("Login", "Registration"))
         self.lineEdit_2.setPlaceholderText("Password")

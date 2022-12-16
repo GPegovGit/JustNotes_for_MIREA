@@ -2,6 +2,11 @@ import sqlite3
 import sys
 import time
 
+import PyQt5
+
+import widget_classes
+from database import *
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt, QPoint
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget
@@ -9,244 +14,337 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget
 from ui_main import Ui_MainWindow
 from ui_functions import *
 from ui_autorization import *
-from firebase import *
-import sqlite3 as sl
-from datetime import datetime
-from PySide6.QtCore import Slot
-from noteWidget import note_Widget
-from database import *
-from NoteClass import *
+from noteWidget import *
+from widget_classes import *
+import hashlib
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
-	def __init__(self):
-		super(MainWindow, self).__init__()
-		self.setupUi(self)
+    def __init__(self, parent=None):
+        super(MainWindow, self).__init__(parent)
+        self.setupUi(self)
 
-		self.counter_id: int = 0
+        self.counter_id: int = 0
 
-		# MOVE WINDOW
-		def moveWindow(event):
-			# IF LEFT CLICK MOVE WINDOW
-			if event.buttons() == Qt.LeftButton:
-				self.move(self.pos() + event.globalPos() - self.dragPos)
-				self.dragPos = event.globalPos()
-				event.accept()
+        def moveWindow(event):
+            if event.buttons() == Qt.LeftButton:
+                self.move(self.pos() + event.globalPos() - self.dragPos)
+                self.dragPos = event.globalPos()
+                event.accept()
 
-		# SET TITLE BAR
-		self.frame_4.mouseMoveEvent = moveWindow
+        self.frame_4.mouseMoveEvent = moveWindow
 
-		# ==> SET UI DEFINITIONS
-		UIFunctions.uiDefinitions(self)
+        UIFunctions.uiDefinitions(self)
 
-		status = 0
+        self.status = 0
 
-	def addNote(self, status):
-		if user.login is None:
-			self.lineEdit.setText("")
-			self.lineEdit_2.setText("")
-			self.lineEdit_2.setPlaceholderText("You need to log in")
-			return
+    def view_tasks(username: str):
+        try:
+            # connect to exist database
+            connection = psycopg2.connect(
+                host=config.host,
+                user=current_user.login,
+                password=current_user.password,
+                database=config.db_name
+            )
+            connection.autocommit = True
+            with connection.cursor() as cursor:
+                            try:
+                                cursor.execute(
+                                        f'SELECT * FROM task')
+                                author_tasks = cursor.fetchall()
 
-		def delNote():
-			delN(notes[num].id)
-			delNoteFB(notes[num].id, user.login)
-			notes[num].deleteLater()
+                                print('Tasks by authorship of an employee:')
+                                for row in author_tasks:
+                                        format = "dd.MM.yyyy"
+                                        tempdate = PyQt5.QtCore.QDate.fromString(row[8], format)
+                                        task = Task(row[2], row[3], tempdate, row[1], row[0], row[6], row[4], row[5])
+                                        tasks.append(task)
 
-		match status:
-			case 0:
-				print(self.counter_id)
-				myTitle = self.lineEdit.text()
-				myText = self.lineEdit_2.text()
-				username = user.login
-				nDate = (datetime.date(datetime.now()))
-				addN(self.counter_id, myTitle, myText, str(nDate))
-				num = self.counter_id
-				notes.append(note_Widget())  # self.counter_id, parent=self)
-				notes[self.counter_id].setFixedHeight(70)
-				notes[self.counter_id].id = self.counter_id
-				notes[self.counter_id].title = myTitle
-				notes[self.counter_id].text = myText
-				notes[self.counter_id].date = nDate
-				notes[self.counter_id].checkBox_3.stateChanged.connect(lambda: delNote())
-				notes[self.counter_id].set()
-				self.verticalLayout.addWidget(notes[self.counter_id])
-				addNoteFB(str(nDate), self.counter_id, myText, myTitle, username)
-				self.counter_id += 1
-				print(self.counter_id)
+                            except Exception as _ex:
+                                    print("[INFO] Error. view tasks error. Reason: ", _ex)
+        except Exception as _ex:
+            print("[INFO] Error. view tasks error. Reason: ", _ex)
 
-			case 1:
-				checkLog = noteRef.order_by_child('username').equal_to(user.login).get()
-				if (len(checkLog)) != len(notes):
-					delAN()
-					notes.clear()
-					self.counter_id = 0
-					for key in checkLog:
-						addN(self.counter_id, checkLog[key]["title"], checkLog[key]["notes"], checkLog[key]["date"])
-						print(self.counter_id)
-						num = self.counter_id
-						notes.append(note_Widget())  # self.counter_id, parent=self)
-						notes[self.counter_id].setFixedHeight(70)
-						notes[self.counter_id].id = self.counter_id
-						notes[self.counter_id].title = checkLog[key]["title"]
-						notes[self.counter_id].text = checkLog[key]["notes"]
-						notes[self.counter_id].date = checkLog[key]["date"]
-						notes[self.counter_id].checkBox_3.stateChanged.connect(lambda: delNote())
-						notes[self.counter_id].set()
-						self.verticalLayout.addWidget(notes[self.counter_id])
-						self.counter_id += 1
+    def view_clients(self):
+        try:
+            # connect to exist database
+            connection = psycopg2.connect(
+                host=config.host,
+                user=current_user.login,
+                password=current_user.password,
+                database=config.db_name
+            )
+            connection.autocommit = True
+            with connection.cursor() as cursor:
+                    try:
+                            cursor.execute(f'SELECT * FROM client')
+                            contracts = cursor.fetchall()
 
-		self.lineEdit_2.setPlaceholderText("")
-		self.lineEdit.setText("")
-		self.lineEdit_2.setText("")
+                            print('Clients seen by the current user:')
+                            for row in contracts:
+                                    client = Client(row[0], row[3], row[1], row[2], row[4])
+                                    clients.append(client)
 
-	# APP EVENTS
-	def mousePressEvent(self, event):
-		self.dragPos = event.globalPos()
-
-	def show_login(self):
-		self.w2 = LoginWindow()
-		self.w2.show()
-
-	def fullClose(self):
-		self.close()
-		self.w2.close()
+                    except Exception as _ex:
+                            print("[INFO] Error. clients view error. Reason: ", _ex)
+        except Exception as _ex:
+            print("[INFO] Error. clients view error. Reason: ", _ex)
 
 
-# def SyncN(self):
-# 	keys = []
-# 	delAN()
-# 	notes.clear()
-# 	# try:
-# 	# 	for i in range(len(notes) - 1, 0):
-# 	# 		print (i)
-# 	# 		notes[i].deleteLater()
-# 	# except Exception as ex:
-# 	# 	print(ex)
-# 	# 	return
-# 	checkLog = noteRef.order_by_child('username').equal_to(user.login).get()
-# 	for key in checkLog:
-# 		addN(self.counter_id, checkLog[key]["title"], checkLog[key]["notes"], checkLog[key]["date"])
-#
-# 		num = self.counter_id
-# 		notes.append(note_Widget())  # self.counter_id, parent=self)
-# 		notes[self.counter_id].setFixedHeight(70)
-# 		notes[self.counter_id].id = self.counter_id
-# 		notes[self.counter_id].title = checkLog[key]["title"]
-# 		notes[self.counter_id].text = checkLog[key]["notes"]
-# 		notes[self.counter_id].date = checkLog[key]["date"]
-#
-# 		def delNote():
-# 			print (notes)
-# 			print (num)
-# 			delN(notes[num].id)
-# 			delNoteFB(notes[num].id, user.login)
-# 			notes.remove(notes[num])
-# 			print (notes)
-#
-# 		notes[self.counter_id].checkBox_3.stateChanged.connect(lambda: delNote())
-# 		notes[self.counter_id].set()
-#
-# 		self.verticalLayout.addWidget(notes[self.counter_id])
-# 		self.counter_id += 1
+    def view_employees(self):
+        try:
+            # connect to exist database
+            connection = psycopg2.connect(
+                host=config.host,
+                user=current_user.login,
+                password=current_user.password,
+                database=config.db_name
+            )
+            connection.autocommit = True
+            with connection.cursor() as cursor:
+                    try:
+                            cursor.execute(
+                                    f'SELECT * FROM employee')
+                            users = cursor.fetchall()
 
-# addN(self.counter_id, myTitle, myText, str(nDate))
-# num = self.counter_id
-# notes.append(note_Widget())  # self.counter_id, parent=self)
-# notes[self.counter_id].setFixedHeight(70)
-# notes[self.counter_id].id = self.counter_id
-# notes[self.counter_id].title = myTitle
-# notes[self.counter_id].text = myText
-# notes[self.counter_id].date = nDate
-#
-# def delNote():
-# 	delN(notes[num].id)
-# 	delNoteFB(notes[num].id, user.login)
-# 	notes[num].deleteLater()
-#
-# notes[self.counter_id].checkBox_3.stateChanged.connect(lambda: delNote())
-# notes[self.counter_id].set()
-#
-# self.verticalLayout.addWidget(notes[self.counter_id])
-#
-# addNoteFB(str(nDate), self.counter_id, myText, myTitle, username)
-# self.counter_id += 1
-#
-# c.execute("SELECT * from notes")
-#
-# self.lineEdit.setText("")
-# self.lineEdit_2.setText("")
+                            for row in users:
+                                    employee = Employee(row[6], row[0], row[1] + " " + row[2] + " " + row[3], row[4], row[5])
+                                    employees.append(employee)
+
+                    except Exception as _ex:
+                            print("[INFO] Error. employees view error. Reason: ", _ex)
+        except Exception as _ex:
+            print("[INFO] Error. employees view error. Reason: ", _ex)
+
+    def AddTVert(self, widget):
+            self.verticalLayout.addWidget(widget)
+
+    def openDown(self):
+        self.w4 = DownloadWindow()
+        self.w4.show()
+
+    def openFilters(self):
+        if self.status == 1:
+            self.w5 = task_filter(self)
+            self.w5.show()
+        elif self.status == 2:
+            self.w5 = employee_filter(self)
+            self.w5.show()
+        elif self.status == 3:
+            self.w5 = company_filter(self)
+            self.w5.show()
 
 
-class LoginWindow(QWidget):
-	def __init__(self):
-		super(LoginWindow, self).__init__()
-		self.setWindowTitle("Login")
-		self.ui = Ui_Login()
-		self.ui.setupUi(self)
-		Ui_Login_functions.ui_login_func(self)
+    def mousePressEvent(self, event):
+        self.dragPos = event.globalPos()
 
-	def Reg(self):
-		if self.ui.lineEdit.text() == "" or self.ui.lineEdit_2.text() == "":
-			self.ui.lineEdit.setPlaceholderText("Enter login")
-			self.ui.lineEdit_2.setPlaceholderText("Enter password")
-			return
-		checkLog = userRef.order_by_child('username').equal_to(self.ui.lineEdit.text()).get()
-		if len(checkLog) != 0:
-			self.ui.lineEdit.setText("")
-			self.ui.lineEdit.setPlaceholderText("Choose another")
-			return
-		user.login = self.ui.lineEdit.text()
-		user.password = self.ui.lineEdit_2.text()
-		addUserFB(user.login, user.password)
-		delU()
-		addU(user.login, user.password)
-		delAN()
+    def show_login(self):
+        self.w2 = LoginWindow(self)
+        self.w2.show()
 
-		for i in range(len(notes)):
-			notes[i].deleteLater()
+    def show_tasks(self):
+        if not self.isLogged(): return
+        self.status = 1
+        for i in range(len(clients_cards)):
+            clients_cards[i].deleteLater()
+        clients_cards.clear()
+        for i in range(len(employees_cards)):
+            employees_cards[i].deleteLater()
+        employees_cards.clear()
+        for i in range(len(tasks)):
+            tasskCard = task_card()
 
-		self.close()
+            tasskCard.setFixedHeight(122)
+            tasskCard.text = tasks[i].text
+            tasskCard.id = tasks[i].id
+            tasskCard.deadline = tasks[i].deadline.toString('yyyy.MM.dd')
+            tasskCard.status = tasks[i].status
+            tasskCard.Priority = tasks[i].Priority
+            tasskCard.executor_id = tasks[i].executor_id
+            tasskCard.number = i
+            tasskCard.set()
 
-	def Log(self):
-		if self.ui.lineEdit.text() == "" or self.ui.lineEdit_2.text() == "":
-			self.ui.lineEdit.setPlaceholderText("Enter login")
-			self.ui.lineEdit_2.setPlaceholderText("Enter password")
-			return
-		checkLog = userRef.order_by_child('username').equal_to(self.ui.lineEdit.text()).get()
-		for key in checkLog:
-			if (checkLog[key]["password"]) != self.ui.lineEdit_2.text():
-				self.ui.lineEdit.setText("")
-				self.ui.lineEdit_2.setText("")
-				self.ui.lineEdit.setPlaceholderText("Wrong data")
-				return
+            tasks_cards.append(tasskCard)
 
-		if len(checkLog) == 0:
-			self.ui.lineEdit.setText("")
-			self.ui.lineEdit_2.setText("")
-			self.ui.lineEdit.setPlaceholderText("Wrong data")
-			return
+            self.verticalLayout.addWidget(tasks_cards[i])
 
-		user.login = self.ui.lineEdit.text()
-		user.password = self.ui.lineEdit_2.text()
-		delU()
-		addU(user.login, user.password)
-		delAN()
+    def show_clients(self):
+        if not self.isLogged(): return
+        self.status = 3
+        for i in range(len(employees_cards)):
+            employees_cards[i].deleteLater()
+        employees_cards.clear()
+        for i in range(len(tasks_cards)):
+            tasks_cards[i].deleteLater()
+        tasks_cards.clear()
+        for i in range(len(clients)):
+            clientCard = client_card()
 
-		for i in range(len(notes)):
-			notes[i].deleteLater()
+            clientCard.setFixedHeight(122)
+            clientCard.id = clients[i].id
+            clientCard.title = clients[i].title
+            clientCard.phone = clients[i].phone
+            clientCard.email = clients[i].email
+            clientCard.city = clients[i].city
+            clientCard.number = i
+            clientCard.set()
 
-		self.close()
+            clients_cards.append(clientCard)
+
+            self.verticalLayout.addWidget(clients_cards[i])
+
+    def show_employee(self):
+        if not self.isLogged(): return
+        self.status = 2
+        for i in range(len(clients_cards)):
+            clients_cards[i].deleteLater()
+        clients_cards.clear()
+        for i in range(len(tasks_cards)):
+            tasks_cards[i].deleteLater()
+        tasks_cards.clear()
+
+        for i in range(len(employees)):
+            employee_card = user_card()
+
+            employee_card.setFixedHeight(122)
+            employee_card.id = employees[i].id
+            employee_card.name = employees[i].name
+            employee_card.phone = employees[i].phone
+            employee_card.email = employees[i].email
+            employee_card.role = employees[i].role
+            employee_card.number = i
+            employee_card.set()
+
+            employees_cards.append(employee_card)
+
+            self.verticalLayout.addWidget(employees_cards[i])
+
+    def show_add(self):
+        if self.status == 1:
+            self.w6 = add_task(self)
+            self.w6.show()
+        elif self.status == 3:
+            self.w6 = add_client(self)
+            self.w6.show()
+
+
+    def refresh(self):
+        print("refresh")
+
+    def fullClose(self):
+        self.close()
+        self.w2.close()
+        self.w3.close()
+        self.w4.close()
+        self.w5.close()
+
+    def isLogged(self):
+        if current_user.login is None:
+            return False
+        return True
+
+class LoginWindow(QMainWindow):
+    def __init__(self, parent=None):
+        super(LoginWindow, self).__init__(parent)
+        self.parent = parent
+        self.setWindowTitle("Login")
+        self.ui = Ui_Login()
+        self.ui.setupUi(self)
+        Ui_Login_functions.ui_login_func(self)
+        self.parent = parent
+
+    def openReg(self):
+        #проверка на права
+        if (current_user.login != "postgres"):
+            self.ui.lineEdit.setText("")
+            self.ui.lineEdit_2.setText("")
+            self.ui.lineEdit.setPlaceholderText("No permissions")
+            self.ui.lineEdit_2.setPlaceholderText("No permissions")
+            return
+
+        self.w3 = RegistrationWindow(self.parent)
+        self.close()
+        self.w3.show()
+
+    def Log(self):
+        if self.ui.lineEdit.text() == "" or self.ui.lineEdit_2.text() == "":
+            self.ui.lineEdit.setPlaceholderText("Enter login")
+            self.ui.lineEdit_2.setPlaceholderText("Enter password")
+            return
+
+        try:
+            if (self.ui.lineEdit.text() == "postgres"):
+                connection = psycopg2.connect(
+                    host=config.host,
+                    user=self.ui.lineEdit.text(),
+                    password=self.ui.lineEdit_2.text(),
+                    database=config.db_name
+                )
+                connection.autocommit = True
+                with connection.cursor() as cursor:
+                    try:
+                        query_str = f'SELECT job_title, employee_id FROM public.employee WHERE username = \'{self.ui.lineEdit.text()}\''
+                        cursor.execute(query_str)
+                        role_and_id = cursor.fetchall()
+
+                        for row in role_and_id:
+                                print("job_title = ", row[0], )
+                                current_user.role = row[0]
+                                print("employee_id = ", row[1], "\n")
+                                current_user.id = row[1]
+
+                    except Exception as _ex:
+                        print("[INFO] get_job_title_and_id_by_username error. Reason: ", _ex)
+                current_user.password = self.ui.lineEdit_2.text()
+            else:
+                connection = psycopg2.connect(
+                    host=config.host,
+                    user=self.ui.lineEdit.text(),
+                    password=hashlib.sha1(self.ui.lineEdit_2.text().encode()).hexdigest(),
+                    database=config.db_name
+                )
+                connection.autocommit = True
+                with connection.cursor() as cursor:
+                    try:
+                        query_str = f'SELECT job_title, employee_id FROM public.employee WHERE username = \'{self.ui.lineEdit.text()}\''
+                        cursor.execute(query_str)
+                        role_and_id = cursor.fetchall()
+
+                        for row in role_and_id:
+                            current_user.role = row[0]
+                            current_user.id = row[1]
+
+                    except Exception as _ex:
+                        print("[INFO] get_job_title_and_id_by_username error. Reason: ", _ex)
+                current_user.password = hashlib.sha1(self.ui.lineEdit_2.text().encode()).hexdigest()
+            current_user.login = self.ui.lineEdit.text()
+
+            MainWindow.view_employees(self.parent)
+            MainWindow.view_clients(self.parent)
+            MainWindow.view_tasks(self.parent)
+            connection.close()
+            self.close()
+
+        except Exception as _ex:
+            self.ui.lineEdit.setText("")
+            self.ui.lineEdit_2.setText("")
+            self.ui.lineEdit.setPlaceholderText("Wrong data")
+            self.ui.lineEdit_2.setPlaceholderText("Wrong data")
+
+
+
+
 
 
 class Ui_Login_functions(LoginWindow):
-	def ui_login_func(self):
-		self.ui.pushButton_2.clicked.connect(self.Reg)
-		self.ui.pushButton.clicked.connect(self.Log)
+    def ui_login_func(self):
+        self.ui.pushButton_2.clicked.connect(self.openReg)
+        self.ui.pushButton.clicked.connect(self.Log)
 
 
 if __name__ == "__main__":
-	app = QApplication(sys.argv)
-	window = MainWindow()
-	window.show()
-	sys.exit(app.exec_())
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
