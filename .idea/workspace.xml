@@ -1,33 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16b2a115-02f1-46e4-baaf-07c4678b2512" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ui_company.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ui_employee.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/add_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/add_task.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/changeTask.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/company_filters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/employee_filters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tasks_filrers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui_download.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui_task_card.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/widget_classes.py" afterDir="false" />
+    <list default="true" id="16b2a115-02f1-46e4-baaf-07c4678b2512" name="Changes" comment="added add_client func">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NoteClass.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AddCollection.png" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AddCollection.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase-sdk.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/noteWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/noteWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebd.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui_autorization.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui_autorization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui_note.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +45,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.database">
     <configuration name="database" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Just Notes" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -196,6 +172,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.hash_penos" />
+      <item itemvalue="Python.ui_autorization" />
+      <item itemvalue="Python.ui_registration" />
+      <item itemvalue="Python.database" />
+      <item itemvalue="Python.firebase" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.database" />
@@ -227,6 +211,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -238,5 +223,11 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="query" language="Python" />
+        <watch expression="reply" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
