@@ -143,3 +143,118 @@ def add_service(service_name: str, service_address: str, service_phone_number: s
                 return
     except Exception as _ex:
         print("[INFO] Error. Service add error. Reason: ", _ex)
+
+#Getters
+def get_parts():
+    try:
+        # connect to exist database
+        connection = psycopg2.connect(
+            host=config.host,
+            user=current_user.login,
+            password=current_user.password,
+            database=config.db_name
+        )
+        connection.autocommit = True
+        with connection.cursor() as cursor:
+            try:
+                query = sql.SQL("SELECT * FROM part")
+                cursor.execute(query)
+                parts = cursor.fetchall()
+                return parts
+            except Exception as _ex:
+                print("[INFO] Error. Get part error. Reason: ", _ex)
+                return
+    except Exception as _ex:
+        print("[INFO] Error. Get part error. Reason: ", _ex)
+
+
+def get_cars():
+    try:
+        # connect to exist database
+        connection = psycopg2.connect(
+            host=config.host,
+            user=current_user.login,
+            password=current_user.password,
+            database=config.db_name
+        )
+        connection.autocommit = True
+        with connection.cursor() as cursor:
+            try:
+                query = sql.SQL("SELECT * FROM car")
+                cursor.execute(query)
+                cars = cursor.fetchall()
+                return cars
+            except Exception as _ex:
+                print("[INFO] Error. Get cars error. Reason: ", _ex)
+                return
+    except Exception as _ex:
+        print("[INFO] Error. Get cars error. Reason: ", _ex)
+
+
+def get_car_brands():
+    try:
+        # connect to exist database
+        connection = psycopg2.connect(
+            host=config.host,
+            user=current_user.login,
+            password=current_user.password,
+            database=config.db_name
+        )
+        connection.autocommit = True
+        with connection.cursor() as cursor:
+            try:
+                query = sql.SQL("SELECT * FROM car_brand")
+                cursor.execute(query)
+                car_brands = cursor.fetchall()
+                return car_brands
+            except Exception as _ex:
+                print("[INFO] Error. Get car_brand error. Reason: ", _ex)
+                return
+    except Exception as _ex:
+        print("[INFO] Error. Get car_brand error. Reason: ", _ex)
+
+
+def get_model_data():
+    try:
+        # connect to exist database
+        connection = psycopg2.connect(
+            host=config.host,
+            user=current_user.login,
+            password=current_user.password,
+            database=config.db_name
+        )
+        connection.autocommit = True
+        with connection.cursor() as cursor:
+            try:
+                query = sql.SQL("SELECT * FROM model_data")
+                cursor.execute(query)
+                model_data = cursor.fetchall()
+                return model_data
+            except Exception as _ex:
+                print("[INFO] Error. Get model_data error. Reason: ", _ex)
+                return
+    except Exception as _ex:
+        print("[INFO] Error. Get model_data error. Reason: ", _ex)
+
+
+def get_services():
+    try:
+        # connect to exist database
+        connection = psycopg2.connect(
+            host=config.host,
+            user=current_user.login,
+            password=current_user.password,
+            database=config.db_name
+        )
+        connection.autocommit = True
+        with connection.cursor() as cursor:
+            try:
+                query = sql.SQL("SELECT * FROM service")
+                cursor.execute(query)
+                services = cursor.fetchall()
+                return services
+            except Exception as _ex:
+                print("[INFO] Error. Get services error. Reason: ", _ex)
+                return
+    except Exception as _ex:
+        print("[INFO] Error. Get services error. Reason: ", _ex)

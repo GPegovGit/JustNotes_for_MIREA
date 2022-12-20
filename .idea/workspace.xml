@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16b2a115-02f1-46e4-baaf-07c4678b2512" name="Changes" comment="added add_client func">
+    <list default="true" id="16b2a115-02f1-46e4-baaf-07c4678b2512" name="Changes" comment="added new funcs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
     </list>
@@ -199,6 +199,14 @@
       <option name="presentableId" value="Default" />
       <updated>1648822961547</updated>
     </task>
+    <task id="LOCAL-00001" summary="added new funcs">
+      <created>1671539413435</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671539413435</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,6 +220,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added new funcs" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new funcs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
