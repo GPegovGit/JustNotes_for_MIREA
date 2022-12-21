@@ -1,83 +1,64 @@
-import PyQt5
-from PyQt5 import QtCore
-import PySide6
-from PySide6 import QtCore
-
-class Task:
+class Service:
 	id = None
-	text = None
-	deadline = None
-	author_id = None
-	executor_id = None
-	contract_id = None
-	Priority = None
-	status = None
-
-	def __init__(self, id: int, text: str, deadline: PyQt5.QtCore.QDate, author_id: int, executor_id: int, contract_id: int, Priority: int, status: str):
-		self.id = id
-		self.text = text
-		self.deadline = deadline
-		self.author_id = author_id
-		self.executor_id = executor_id
-		self.contract_id = contract_id
-		self.Priority = Priority
-		self.status = status
-
-
-
-
-class Client:
-	id = None
-	title = None
-	phone = None
-	email = None
-	city = None
-
-	def __init__(self, id: int, title: str, phone: int, email: str, city: str):
-		self.id = id
-		self.title = title
-		self.city = city
-		self.phone = phone
-		self.email = email
-
-class Employee:
-	id = None
-	role = None
 	name = None
-	phone = None
-	email = None
+	address = None
+	Phone = None
+	manager = None
 
-	def __init__(self, id: int, role: str, name: str, phone: int, email: str):
+	def __init__(self, id: int, name: str, address: str, Phone: str, manager: str):
 		self.id = id
-		self.role = role
 		self.name = name
-		self.phone = phone
-		self.email = email
+		self.address = address
+		self.Phone = Phone
+		self.manager = manager
+
+class Part:
+	id = None
+	name = None
+	price = None
+	manufacturer = None
+
+	def __init__(self, id: int, name: str, price: int, manufacturer: str):
+		self.id = id
+		self.name = name
+		self.price = price
+		self.manufacturer = manufacturer
+
+class Model:
+	id = None
+	name = None
+	brand_id = None
+	model_year = None
+
+	def __init__(self, id: int, name: str, brand_id: int, model_year: int):
+		self.id = id
+		self.name = name
+		self.brand_id = brand_id
+		self.model_year = model_year
+
+class Car_brand:
+	id = None
+	name = None
+
+	def __init__(self, id: int, name: str):
+		self.id = id
+		self.name = name
+
+class Car:
+	license_plate = None
+	color = None
+	estimated_value = None
+	car_model_id = None
+
+	def __init__(self, license_plate: str, color: str, estimated_value: int, car_model_id: int):
+		self.license_plate = license_plate
+		self.color = color
+		self.estimated_value = estimated_value
+		self.car_model_id = car_model_id
 
 
-class User:
-	login = None
-	role = None
-	id = 1
-	password = None
 
 
-current_user = User
-employee = Employee
-client = Client
-task = Task
-
-tasks = []
-clients = []
-employees = []
-
-ftasks = []
-fclients = []
-femployees = []
-
-tasks_cards = []
-clients_cards = []
-employees_cards = []
 
 
 

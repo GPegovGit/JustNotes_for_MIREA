@@ -37,7 +37,7 @@ class Ui_add_client(object):
 "text-decorations: none;\n"
 "border-style:none ;")
 
-        self.gridLayout1.addWidget(self.Task_id, 1, 0, 1, 1)
+        self.gridLayout1.addWidget(self.Task_id, 3, 0, 1, 1)
 
         self.search = QtWidgets.QPushButton(self.gridLayoutWidget)
         self.search.setObjectName(u"search")
@@ -51,7 +51,7 @@ class Ui_add_client(object):
 "    border-color: rgb(123, 115, 27);\n"
 "border-radius: 15px;")
 
-        self.gridLayout1.addWidget(self.search, 4, 0, 1, 1)
+        self.gridLayout1.addWidget(self.search, 5, 0, 1, 1)
 
         self.Priority = QLineEdit(self.gridLayoutWidget)
         self.Priority.setObjectName(u"Priority")
@@ -63,11 +63,12 @@ class Ui_add_client(object):
 "text-decorations: none;\n"
 "border-style:none ;")
 
-        self.gridLayout1.addWidget(self.Priority, 2, 0, 1, 1)
+        self.gridLayout1.addWidget(self.Priority, 4, 0, 1, 1)
 
-        self.Status = QLineEdit(self.gridLayoutWidget)
-        self.Status.setObjectName(u"Status")
-        self.Status.setStyleSheet(u"text-align: center;\n"
+
+        self.fname = QLineEdit(self.gridLayoutWidget)
+        self.fname.setObjectName(u"Executor_id")
+        self.fname.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
@@ -75,20 +76,31 @@ class Ui_add_client(object):
 "text-decorations: none;\n"
 "border-style:none ;")
 
-        self.gridLayout1.addWidget(self.Status, 3, 0, 1, 1)
+        self.gridLayout1.addWidget(self.fname, 0, 0, 1, 1)
 
-        self.Executor_id = QLineEdit(self.gridLayoutWidget)
-        self.Executor_id.setObjectName(u"Executor_id")
-        self.Executor_id.setStyleSheet(u"text-align: center;\n"
-"font-family: Myriad Pro;\n"
-"color: rgb(123, 115, 27);\n"
-"font-size:25px;;\n"
-"background-color: rgb(36, 37, 39);\n"
-"text-decorations: none;\n"
-"border-style:none ;")
+        self.sname = QLineEdit(self.gridLayoutWidget)
+        self.sname.setObjectName(u"Executor_id")
+        self.sname.setStyleSheet(u"text-align: center;\n"
+                                 "font-family: Myriad Pro;\n"
+                                 "color: rgb(123, 115, 27);\n"
+                                 "font-size:25px;;\n"
+                                 "background-color: rgb(36, 37, 39);\n"
+                                 "text-decorations: none;\n"
+                                 "border-style:none ;")
 
-        self.gridLayout1.addWidget(self.Executor_id, 0, 0, 1, 1)
+        self.gridLayout1.addWidget(self.sname, 1, 0, 1, 1)
 
+        self.pname = QLineEdit(self.gridLayoutWidget)
+        self.pname.setObjectName(u"Executor_id")
+        self.pname.setStyleSheet(u"text-align: center;\n"
+                                 "font-family: Myriad Pro;\n"
+                                 "color: rgb(123, 115, 27);\n"
+                                 "font-size:25px;;\n"
+                                 "background-color: rgb(36, 37, 39);\n"
+                                 "text-decorations: none;\n"
+                                 "border-style:none ;")
+
+        self.gridLayout1.addWidget(self.pname, 2, 0, 1, 1)
 
         self.retranslateUi(add_client)
 
@@ -107,9 +119,11 @@ class Ui_add_client(object):
         self.search.setText(QtCore.QCoreApplication.translate("add_client", u"ADD", None))
         self.Priority.setText(QtCore.QCoreApplication.translate("add_client", u"", None))
         self.Priority.setPlaceholderText("Email")
-        self.Status.setText(QtCore.QCoreApplication.translate("add_client", u"", None))
-        self.Status.setPlaceholderText("City")
-        self.Executor_id.setText(QtCore.QCoreApplication.translate("add_client", u"", None))
-        self.Executor_id.setPlaceholderText("Company_Name")
+        self.fname.setText(QtCore.QCoreApplication.translate("add_client", u"", None))
+        self.fname.setPlaceholderText("First Name")
+        self.sname.setText(QtCore.QCoreApplication.translate("add_client", u"", None))
+        self.sname.setPlaceholderText("Second Name")
+        self.pname.setText(QtCore.QCoreApplication.translate("add_client", u"", None))
+        self.pname.setPlaceholderText("Patronymyc")
     # retranslateUi
 

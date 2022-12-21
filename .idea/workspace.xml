@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16b2a115-02f1-46e4-baaf-07c4678b2512" name="Changes" comment="added new funcs">
+    <list default="true" id="16b2a115-02f1-46e4-baaf-07c4678b2512" name="Changes" comment="gt">
+      <change afterPath="$PROJECT_DIR$/Ui/service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ui/ui_car.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ui/ui_car_brand.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ui/ui_model_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ui/ui_part.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ui/ui_registration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ui/ui_task_card.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car_brand.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/employee.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui_company.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/Ui_company.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui_employee.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/Ui_employee.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/add_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/add_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/changeTask.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/changeTask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/company_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/employee_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/noteWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/noteWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks_filrers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/tasks_filrers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui_autorization.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_autorization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_download.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui_task_card.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget_classes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +64,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="27CTFC6zPMP7GHgw8tRFkZGvYu2" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -45,7 +80,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.database">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gosha\PycharmProjects\Just Notes\Ui" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
     <configuration name="database" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Just Notes" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,7 +182,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ui_autorization.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\gosha\PycharmProjects\Just Notes\Ui\ui_autorization.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -173,12 +213,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.main" />
-      <item itemvalue="Python.hash_penos" />
-      <item itemvalue="Python.ui_autorization" />
-      <item itemvalue="Python.ui_registration" />
       <item itemvalue="Python.database" />
       <item itemvalue="Python.firebase" />
+      <item itemvalue="Python.hash_penos" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.ui_autorization" />
+      <item itemvalue="Python.ui_registration" />
     </list>
     <recent_temporary>
       <list>
@@ -199,14 +239,6 @@
       <option name="presentableId" value="Default" />
       <updated>1648822961547</updated>
     </task>
-    <task id="LOCAL-00001" summary="added new funcs">
-      <created>1671539413435</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1671539413435</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -219,11 +251,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="added new funcs" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new funcs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -235,11 +262,5 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="query" language="Python" />
-        <watch expression="reply" language="Python" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

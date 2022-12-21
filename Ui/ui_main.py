@@ -38,10 +38,12 @@ class Ui_MainWindow(object):
         self.frame.setStyleSheet(u"background-color: rgb(36, 37, 39);")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+
         self.Show_tasks = QtWidgets.QPushButton(self.frame)
         self.Show_tasks.setObjectName(u"Show_tasks")
         self.Show_tasks.setEnabled(True)
-        self.Show_tasks.setGeometry(QtCore.QRect(14, 245, 65, 65))
+        self.Show_tasks.setGeometry(QtCore.QRect(14, 145, 65, 65))
         sizePolicy1 = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Ignored)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
@@ -58,36 +60,82 @@ class Ui_MainWindow(object):
         self.Show_tasks.setIcon(icon)
         self.Show_tasks.setIconSize(QtCore.QSize(35, 35))
 
-        self.Refresh = QtWidgets.QPushButton(self.frame)
-        self.Refresh.setObjectName(u"Refresh")
-        self.Refresh.setEnabled(True)
-        self.Refresh.setGeometry(QtCore.QRect(14, 26, 65, 65))
-        sizePolicy1 = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Ignored)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.Refresh.sizePolicy().hasHeightForWidth())
-        self.Refresh.setSizePolicy(sizePolicy1)
-        self.Refresh.setAutoFillBackground(False)
-        self.Refresh.setStyleSheet(u"QPushButton{\n"
+        #1430
+
+        self.Show_car = QtWidgets.QPushButton(self.centralwidget)
+        self.Show_car.setObjectName(u"Filter")
+        self.Show_car.setGeometry(QtCore.QRect(1430, 73, 65, 65))
+        self.Show_car.setAutoFillBackground(False)
+        self.Show_car.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
+                                  "border-radius: 32px;")
+        icon3 = QtGui.QIcon()
+        icon3.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Car.png", QtCore.QSize(),
+                      QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Show_car.setIcon(icon3)
+        self.Show_car.setIconSize(QtCore.QSize(45, 45))
+
+        self.Show_car_brand = QtWidgets.QPushButton(self.centralwidget)
+        self.Show_car_brand.setObjectName(u"Filter")
+        self.Show_car_brand.setGeometry(QtCore.QRect(1430, 173, 65, 65))
+        self.Show_car_brand.setAutoFillBackground(False)
+        self.Show_car_brand.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
+                                    "border-radius: 32px;")
+        icon3 = QtGui.QIcon()
+        icon3.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Brand.png", QtCore.QSize(),
+                      QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Show_car_brand.setIcon(icon3)
+        self.Show_car_brand.setIconSize(QtCore.QSize(45, 45))
+
+        self.Show_model_data = QtWidgets.QPushButton(self.centralwidget)
+        self.Show_model_data.setObjectName(u"Filter")
+        self.Show_model_data.setGeometry(QtCore.QRect(1430, 273, 65, 65))
+        self.Show_model_data.setAutoFillBackground(False)
+        self.Show_model_data.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
+                                          "border-radius: 32px;")
+        icon3 = QtGui.QIcon()
+        icon3.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Model.png", QtCore.QSize(),
+                      QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Show_model_data.setIcon(icon3)
+        self.Show_model_data.setIconSize(QtCore.QSize(45, 45))
+
+        self.Show_parts = QtWidgets.QPushButton(self.centralwidget)
+        self.Show_parts.setObjectName(u"Filter")
+        self.Show_parts.setGeometry(QtCore.QRect(1430, 373, 65, 65))
+        self.Show_parts.setAutoFillBackground(False)
+        self.Show_parts.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
+                                           "border-radius: 32px;")
+        icon3 = QtGui.QIcon()
+        icon3.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Parts.png", QtCore.QSize(),
+                      QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Show_parts.setIcon(icon3)
+        self.Show_parts.setIconSize(QtCore.QSize(45, 45))
+
+        self.Show_service = QtWidgets.QPushButton(self.frame)
+        self.Show_service.setObjectName(u"Refresh")
+        self.Show_service.setEnabled(True)
+        self.Show_service.setGeometry(QtCore.QRect(14, 45, 65, 65))
+        self.Show_service.setSizePolicy(sizePolicy1)
+        self.Show_service.setAutoFillBackground(False)
+        self.Show_service.setStyleSheet(u"QPushButton{\n"
                                       "	background-color: rgb(123, 115, 27);\n"
                                       "	border-radius: 32px;\n"
                                       "}\n"
                                       "")
         icon = QtGui.QIcon()
-        icon.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/UPDATE.png", QtCore.QSize(),
+        icon.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Service.png", QtCore.QSize(),
                      QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.Refresh.setIcon(icon)
-        self.Refresh.setIconSize(QtCore.QSize(45, 45))
+        self.Show_service.setIcon(icon)
+        self.Show_service.setIconSize(QtCore.QSize(45, 45))
 
 
         self.Show_employee = QtWidgets.QPushButton(self.frame)
         self.Show_employee.setObjectName(u"Show_employee")
-        self.Show_employee.setGeometry(QtCore.QRect(14, 345, 65, 65))
+        self.Show_employee.setGeometry(QtCore.QRect(14, 245, 65, 65))
         self.Show_employee.setAutoFillBackground(False)
         self.Show_employee.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 32px;")
         icon8 = QtGui.QIcon()
-        icon8.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Employee.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Clients.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_employee.setIcon(icon8)
         self.Show_employee.setIconSize(QtCore.QSize(45, 45))
         self.Settings_button = QtWidgets.QPushButton(self.frame)
@@ -104,17 +152,17 @@ class Ui_MainWindow(object):
         self.Settings_button.setIconSize(QtCore.QSize(35, 35))
         self.Show_clients = QtWidgets.QPushButton(self.frame)
         self.Show_clients.setObjectName(u"Show_clients")
-        self.Show_clients.setGeometry(QtCore.QRect(14, 445, 65, 65))
+        self.Show_clients.setGeometry(QtCore.QRect(14, 345, 65, 65))
         self.Show_clients.setAutoFillBackground(False)
         self.Show_clients.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 32px;")
         self.Show_clients.setIcon(icon8)
         self.Show_clients.setIconSize(QtCore.QSize(45, 45))
         icon7 = QtGui.QIcon()
-        icon7.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Clients.png", QtCore.QSize(),
+        icon7.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Employee.png", QtCore.QSize(),
                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_clients.setIcon(icon7)
-        self.Show_clients.setIconSize(QtCore.QSize(35, 35))
+        self.Show_clients.setIconSize(QtCore.QSize(45, 45))
         self.frame_2 = QtWidgets.QFrame(self.centralwidget)
         self.frame_2.setObjectName(u"frame_2")
         self.frame_2.setGeometry(QtCore.QRect(93, 26, 2, 1083))
@@ -129,7 +177,7 @@ class Ui_MainWindow(object):
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.Filter = QtWidgets.QPushButton(self.centralwidget)
         self.Filter.setObjectName(u"Filter")
-        self.Filter.setGeometry(QtCore.QRect(1430, 810, 65, 65))
+        self.Filter.setGeometry(QtCore.QRect(1430, 808, 65, 65))
         self.Filter.setAutoFillBackground(False)
         self.Filter.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 32px;")
@@ -266,7 +314,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.Add_task = QtWidgets.QPushButton(self.centralwidget)
         self.Add_task.setObjectName(u"Add_task")
-        self.Add_task.setGeometry(QtCore.QRect(1430, 610, 65, 65))
+        self.Add_task.setGeometry(QtCore.QRect(1430, 608, 65, 65))
         self.Add_task.setAutoFillBackground(False)
         self.Add_task.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 32px;")
@@ -276,7 +324,7 @@ class Ui_MainWindow(object):
         self.Add_task.setIconSize(QtCore.QSize(55, 55))
         self.Download = QtWidgets.QPushButton(self.centralwidget)
         self.Download.setObjectName(u"Download")
-        self.Download.setGeometry(QtCore.QRect(1430, 710, 65, 65))
+        self.Download.setGeometry(QtCore.QRect(1430, 708, 65, 65))
         self.Download.setAutoFillBackground(False)
         self.Download.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 32px;")

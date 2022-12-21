@@ -27,17 +27,6 @@ class Ui_add_task(object):
         self.gridLayout1 = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout1.setObjectName(u"gridLayout1")
         self.gridLayout1.setContentsMargins(0, 0, 0, 0)
-        self.Contract_id = QLineEdit(self.gridLayoutWidget)
-        self.Contract_id.setObjectName(u"Contract_id")
-        self.Contract_id.setStyleSheet(u"text-align: center;\n"
-"font-family: Myriad Pro;\n"
-"color: rgb(123, 115, 27);\n"
-"font-size:25px;;\n"
-"background-color: rgb(36, 37, 39);\n"
-"text-decorations: none;\n"
-"border-style:none ;")
-
-        self.gridLayout1.addWidget(self.Contract_id, 4, 0, 1, 1)
 
         self.Task_id = QLineEdit(self.gridLayoutWidget)
         self.Task_id.setObjectName(u"Task_id")
@@ -63,23 +52,7 @@ class Ui_add_task(object):
 "    border-color: rgb(123, 115, 27);\n"
 "border-radius: 15px;")
 
-        self.gridLayout1.addWidget(self.search, 6, 0, 1, 1)
-
-        self.Priority = QLineEdit(self.gridLayoutWidget)
-        self.Priority.setObjectName(u"Priority")
-        self.Priority.setStyleSheet(u"text-align: center;\n"
-"font-family: Myriad Pro;\n"
-"color: rgb(123, 115, 27);\n"
-"font-size:25px;;\n"
-"background-color: rgb(36, 37, 39);\n"
-"text-decorations: none;\n"
-"border-style:none ;")
-
-        self.gridLayout1.addWidget(self.Priority, 2, 0, 1, 1)
-
-
-
-
+        self.gridLayout1.addWidget(self.search, 9, 0, 1, 1)
 
         self.Executor_id = QLineEdit(self.gridLayoutWidget)
         self.Executor_id.setObjectName(u"Executor_id")
@@ -96,7 +69,43 @@ class Ui_add_task(object):
         self.dateTimeEdit = QtWidgets.QDateEdit(self.gridLayoutWidget)
         self.dateTimeEdit.setObjectName(u"dateTimeEdit")
 
-        self.gridLayout1.addWidget(self.dateTimeEdit, 5, 0, 1, 1)
+        self.gridLayout1.addWidget(self.dateTimeEdit, 8, 0, 1, 1)
+
+        self.customer_id = QLineEdit(self.gridLayoutWidget)
+        self.customer_id.setObjectName(u"Priority")
+        self.customer_id.setStyleSheet(u"text-align: center;\n"
+                                   "font-family: Myriad Pro;\n"
+                                   "color: rgb(123, 115, 27);\n"
+                                   "font-size:25px;;\n"
+                                   "background-color: rgb(36, 37, 39);\n"
+                                   "text-decorations: none;\n"
+                                   "border-style:none ;")
+
+        self.gridLayout1.addWidget(self.customer_id, 7, 0, 1, 1)
+
+        self.plate = QLineEdit(self.gridLayoutWidget)
+        self.plate.setObjectName(u"Priority")
+        self.plate.setStyleSheet(u"text-align: center;\n"
+                                    "font-family: Myriad Pro;\n"
+                                    "color: rgb(123, 115, 27);\n"
+                                    "font-size:25px;;\n"
+                                    "background-color: rgb(36, 37, 39);\n"
+                                    "text-decorations: none;\n"
+                                    "border-style:none ;")
+
+        self.gridLayout1.addWidget(self.plate, 5, 0, 1, 1)
+
+        self.part_id = QLineEdit(self.gridLayoutWidget)
+        self.part_id.setObjectName(u"Priority")
+        self.part_id.setStyleSheet(u"text-align: center;\n"
+                                 "font-family: Myriad Pro;\n"
+                                 "color: rgb(123, 115, 27);\n"
+                                 "font-size:25px;;\n"
+                                 "background-color: rgb(36, 37, 39);\n"
+                                 "text-decorations: none;\n"
+                                 "border-style:none ;")
+
+        self.gridLayout1.addWidget(self.part_id, 6, 0, 1, 1)
 
 
         self.retranslateUi(add_task)
@@ -111,14 +120,16 @@ class Ui_add_task(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:25px;\">ADD</span></p></body></html>", None))
-        self.Contract_id.setText(QtCore.QCoreApplication.translate("add_task", u"", None))
-        self.Contract_id.setPlaceholderText("Contract_id")
+        self.customer_id.setText(QtCore.QCoreApplication.translate("add_task", u"", None))
+        self.customer_id.setPlaceholderText("Customer id")
+        self.part_id.setText(QtCore.QCoreApplication.translate("add_task", u"", None))
+        self.part_id.setPlaceholderText("Part id")
+        self.plate.setText(QtCore.QCoreApplication.translate("add_task", u"", None))
+        self.plate.setPlaceholderText("License plate")
         self.Task_id.setText(QtCore.QCoreApplication.translate("add_task", u"", None))
         self.Task_id.setPlaceholderText("Description")
         self.search.setText(QtCore.QCoreApplication.translate("add_task", u"ADD", None))
-        self.Priority.setText(QtCore.QCoreApplication.translate("add_task", u"", None))
-        self.Priority.setPlaceholderText("Priority")
         self.Executor_id.setText(QtCore.QCoreApplication.translate("add_task", u"", None))
-        self.Executor_id.setPlaceholderText("Executor_id")
+        self.Executor_id.setPlaceholderText("Executor id")
     # retranslateUi
 

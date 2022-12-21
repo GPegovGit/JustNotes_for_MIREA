@@ -1,22 +1,20 @@
-import sqlite3
-import sys
-import time
+#from database import *
 
-import PyQt5
-
-import widget_classes
-from database import *
-
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt, QPoint
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget
-
-from ui_main import Ui_MainWindow
-from ui_functions import *
-from ui_autorization import *
-from noteWidget import *
-from widget_classes import *
 import hashlib
+import sys
+
+from PyQt5 import QtCore
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication
+
+from Ui.ui_autorization import *
+from Ui.ui_functions import *
+from Ui.ui_main import *
+from client import clients_cards, clients, client_card, Client, add_client, company_filter
+from employee import employee_filter
+from noteWidget import *
+from order import *
+
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -104,6 +102,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             connection.autocommit = True
             with connection.cursor() as cursor:
                     try:
+                        if (current_user.role == 'employee'):
+                            cursor.execute(
+                                    f'SELECT * FROM employee WHERE job_title = \'employee\'')
+                        else:
                             cursor.execute(
                                     f'SELECT * FROM employee')
                             users = cursor.fetchall()

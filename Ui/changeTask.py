@@ -27,17 +27,7 @@ class Ui_change_task(object):
         self.gridLayout1 = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout1.setObjectName(u"gridLayout1")
         self.gridLayout1.setContentsMargins(0, 0, 0, 0)
-        self.Contract_id = QLineEdit(self.gridLayoutWidget)
-        self.Contract_id.setObjectName(u"Contract_id")
-        self.Contract_id.setStyleSheet(u"text-align: center;\n"
-"font-family: Myriad Pro;\n"
-"color: rgb(123, 115, 27);\n"
-"font-size:25px;;\n"
-"background-color: rgb(36, 37, 39);\n"
-"text-decorations: none;\n"
-"border-style:none ;")
 
-        self.gridLayout1.addWidget(self.Contract_id, 4, 0, 1, 1)
 
         self.Task_id = QLineEdit(self.gridLayoutWidget)
         self.Task_id.setObjectName(u"Task_id")
@@ -95,8 +85,6 @@ class Ui_change_task(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:25px;\">CHANGE</span></p></body></html>", None))
-        self.Contract_id.setText(QtCore.QCoreApplication.translate("add_task", u"", None))
-        self.Contract_id.setPlaceholderText("Priority")
         self.Task_id.setText(QtCore.QCoreApplication.translate("add_task", u"", None))
         self.Task_id.setPlaceholderText("Executor id")
         self.search.setText(QtCore.QCoreApplication.translate("add_task", u"CHANGE", None))

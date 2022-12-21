@@ -3,7 +3,7 @@
 
 from main import *
 
-from ui_main import *
+from Ui.ui_main import *
 
 
 class UIFunctions(MainWindow):
