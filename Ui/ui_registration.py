@@ -48,17 +48,6 @@ class Ui_Registration(object):
 
         self.gridLayout1.addWidget(self.lineEdit_f, 6, 0, 1, 1)
 
-        self.lineEdit_f_5 = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_f_5.setObjectName(u"lineEdit_f_5")
-        self.lineEdit_f_5.setStyleSheet(u"text-align: center;\n"
-"font-family: Myriad Pro;\n"
-"color: rgb(123, 115, 27);\n"
-"font-size:25px;;\n"
-"background-color: rgb(36, 37, 39);\n"
-"text-decorations: none;\n"
-"border-style:none ;")
-
-        self.gridLayout1.addWidget(self.lineEdit_f_5, 3, 0, 1, 1)
 
         self.lineEdit_f_2 = QLineEdit(self.gridLayoutWidget)
         self.lineEdit_f_2.setObjectName(u"lineEdit_f_2")
@@ -120,7 +109,7 @@ class Ui_Registration(object):
 "    border-color: rgb(123, 115, 27);\n"
 "border-radius: 15px;")
 
-        self.gridLayout1.addWidget(self.reggg, 7, 0, 1, 1)
+        self.gridLayout1.addWidget(self.reggg, 8, 0, 1, 1)
 
         self.lineEdit_f_6 = QLineEdit(self.gridLayoutWidget)
         self.lineEdit_f_6.setObjectName(u"lineEdit_f_6")
@@ -133,6 +122,18 @@ class Ui_Registration(object):
 "border-style:none ;")
 
         self.gridLayout1.addWidget(self.lineEdit_f_6, 4, 0, 1, 1)
+
+        self.Service = QLineEdit(self.gridLayoutWidget)
+        self.Service.setObjectName(u"lineEdit_f_6")
+        self.Service.setStyleSheet(u"text-align: center;\n"
+                                        "font-family: Myriad Pro;\n"
+                                        "color: rgb(123, 115, 27);\n"
+                                        "font-size:25px;;\n"
+                                        "background-color: rgb(36, 37, 39);\n"
+                                        "text-decorations: none;\n"
+                                        "border-style:none ;")
+
+        self.gridLayout1.addWidget(self.Service, 7, 0, 1, 1)
 
         self.reggi = QtWidgets.QTextBrowser(Registration)
         self.reggi.setObjectName(u"reggi")
@@ -200,8 +201,6 @@ class Ui_Registration(object):
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma'; font-size:22pt;\">PROFILE</span></p></body></html>", None))
         self.lineEdit_f.setText(QtCore.QCoreApplication.translate("Registration", u"", None))
         self.lineEdit_f.setPlaceholderText("Password")
-        self.lineEdit_f_5.setText(QtCore.QCoreApplication.translate("Registration", u"", None))
-        self.lineEdit_f_5.setPlaceholderText("Phone")
         self.lineEdit_f_2.setText(QtCore.QCoreApplication.translate("Registration", u"", None))
         self.lineEdit_f_2.setPlaceholderText("First Name")
         self.lineEdit_f_3.setText(QtCore.QCoreApplication.translate("Registration", u"", None))
@@ -211,6 +210,8 @@ class Ui_Registration(object):
         self.lineEditx.setPlaceholderText("Username")
         self.lineEdit_f_4.setText(QtCore.QCoreApplication.translate("Registration", u"", None))
         self.lineEdit_f_4.setPlaceholderText("Patronymic")
+        self.Service.setText(QtCore.QCoreApplication.translate("Registration", u"", None))
+        self.Service.setPlaceholderText("Service ID")
         self.reggg.setText(QtCore.QCoreApplication.translate("Registration", u"Registration", None))
         self.lineEdit_f_6.setText(QtCore.QCoreApplication.translate("Registration", u"", None))
         self.lineEdit_f_6.setPlaceholderText("Email")

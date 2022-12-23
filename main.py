@@ -1,4 +1,4 @@
-#from database import *
+# from database import *
 
 import hashlib
 import sys
@@ -10,11 +10,13 @@ from PyQt5.QtWidgets import QApplication
 from Ui.ui_autorization import *
 from Ui.ui_functions import *
 from Ui.ui_main import *
-from client import clients_cards, clients, client_card, Client, add_client, company_filter
-from employee import employee_filter
+from car import add_car, cars, car_card, Car
+from client import clients, client_card, Client, add_client, company_filter
+from employee import employee_filter, employees, user_card, Employee
 from noteWidget import *
+from noteWidget import cards
 from order import *
-
+from service import services, service_card, add_service, Service
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -47,20 +49,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             )
             connection.autocommit = True
             with connection.cursor() as cursor:
-                            try:
-                                cursor.execute(
-                                        f'SELECT * FROM task')
-                                author_tasks = cursor.fetchall()
+                try:
+                    cursor.execute(
+                        f'SELECT * FROM service_order')
+                    author_tasks = cursor.fetchall()
 
-                                print('Tasks by authorship of an employee:')
-                                for row in author_tasks:
-                                        format = "dd.MM.yyyy"
-                                        tempdate = PyQt5.QtCore.QDate.fromString(row[8], format)
-                                        task = Task(row[2], row[3], tempdate, row[1], row[0], row[6], row[4], row[5])
-                                        tasks.append(task)
+                    for row in author_tasks:
+                        format = "dd.MM.yyyy"
+                        tempdate = PyQt5.QtCore.QDate.fromString(row[10], format)
+                        task = Task(row[5], row[3], tempdate, row[7], row[8], row[6], row[0], row[2], row[1], row[4])
+                        tasks.append(task)
 
-                            except Exception as _ex:
-                                    print("[INFO] Error. view tasks error. Reason: ", _ex)
+                except Exception as _ex:
+                    print("[INFO] Error. view tasks error. Reason: ", _ex)
         except Exception as _ex:
             print("[INFO] Error. view tasks error. Reason: ", _ex)
 
@@ -75,20 +76,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             )
             connection.autocommit = True
             with connection.cursor() as cursor:
-                    try:
-                            cursor.execute(f'SELECT * FROM client')
-                            contracts = cursor.fetchall()
+                try:
+                    cursor.execute(f'SELECT * FROM customer')
+                    contracts = cursor.fetchall()
 
-                            print('Clients seen by the current user:')
-                            for row in contracts:
-                                    client = Client(row[0], row[3], row[1], row[2], row[4])
-                                    clients.append(client)
+                    print('Clients seen by the current user:')
+                    for row in contracts:
+                        client = Client(row[5], row[1], row[2], row[3], row[0], row[4])
+                        clients.append(client)
 
-                    except Exception as _ex:
-                            print("[INFO] Error. clients view error. Reason: ", _ex)
+                except Exception as _ex:
+                    print("[INFO] Error. clients view error. Reason: ", _ex)
         except Exception as _ex:
             print("[INFO] Error. clients view error. Reason: ", _ex)
-
 
     def view_employees(self):
         try:
@@ -101,29 +101,83 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             )
             connection.autocommit = True
             with connection.cursor() as cursor:
-                    try:
-                        if (current_user.role == 'employee'):
-                            cursor.execute(
-                                    f'SELECT * FROM employee WHERE job_title = \'employee\'')
-                        else:
-                            cursor.execute(
-                                    f'SELECT * FROM employee')
-                            users = cursor.fetchall()
+                try:
+                    if (current_user.role == 'employee'):
+                        query = sql.SQL("SELECT * FROM employee WHERE job_title = \'employee\'")
+                        cursor.execute(query)
+                        users = cursor.fetchall()
+                        for row in users:
+                            employee = Employee(row[7], row[5], row[0] + " " + row[1] + " " + row[2], row[6], row[8])
+                            employees.append(employee)
+                    else:
+                        query = sql.SQL("SELECT * FROM employee")
+                        cursor.execute(query)
+                        users = cursor.fetchall()
+                        for row in users:
+                            employee = Employee(row[7], row[5], row[0] + " " + row[1] + " " + row[2], row[6], row[8])
+                            employees.append(employee)
 
-                            for row in users:
-                                    employee = Employee(row[6], row[0], row[1] + " " + row[2] + " " + row[3], row[4], row[5])
-                                    employees.append(employee)
-
-                    except Exception as _ex:
-                            print("[INFO] Error. employees view error. Reason: ", _ex)
+                except Exception as _ex:
+                    print("[INFO] Error. employees view error. Reason: ", _ex)
         except Exception as _ex:
             print("[INFO] Error. employees view error. Reason: ", _ex)
 
+
+    def view_services(self):
+        try:
+            # connect to exist database
+            connection = psycopg2.connect(
+                host=config.host,
+                user=current_user.login,
+                password=current_user.password,
+                database=config.db_name
+            )
+            connection.autocommit = True
+            with connection.cursor() as cursor:
+                try:
+                    query = sql.SQL("SELECT * FROM service")
+                    cursor.execute(query)
+                    service_ = cursor.fetchall()
+                    for row in service_:
+                        service = Service(row[4], row[0], row[1], row[2], row[3])
+                        services.append(service)
+                except Exception as _ex:
+                    print("[INFO] Error. Get services error. Reason: ", _ex)
+        except Exception as _ex:
+            print("[INFO] Error. Get services error. Reason: ", _ex)
+
+    def view_cars(self):
+        try:
+            # connect to exist database
+            connection = psycopg2.connect(
+                host=config.host,
+                user=current_user.login,
+                password=current_user.password,
+                database=config.db_name
+            )
+            connection.autocommit = True
+            with connection.cursor() as cursor:
+                try:
+                    query = sql.SQL("SELECT * FROM car")
+                    cursor.execute(query)
+                    cars_ = cursor.fetchall()
+                    for row in cars_:
+                        car = Car(row[0], row[1], row[3], row[2])
+                        cars.append(car)
+                except Exception as _ex:
+                    print("[INFO] Error. Get cars error. Reason: ", _ex)
+                    return
+        except Exception as _ex:
+            print("[INFO] Error. Get cars error. Reason: ", _ex)
+
+
+
+
     def AddTVert(self, widget):
-            self.verticalLayout.addWidget(widget)
+        self.verticalLayout.addWidget(widget)
 
     def openDown(self):
-        self.w4 = DownloadWindow()
+        self.w4 = DownloadWindow(self)
         self.w4.show()
 
     def openFilters(self):
@@ -137,7 +191,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.w5 = company_filter(self)
             self.w5.show()
 
-
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
 
@@ -145,15 +198,65 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.w2 = LoginWindow(self)
         self.w2.show()
 
+    def hide_all(self):
+        for i in range(len(cards)):
+            cards[i].deleteLater()
+        cards.clear()
+
+    def show_cars(self):
+        if not self.isLogged(): return
+        self.status = 5
+        self.hide_all()
+        for i in range(len(cars)):
+            carCard = car_card()
+            carCard.setFixedHeight(132)
+            carCard.license_plate = cars[i].license_plate
+            carCard.car_model_id = cars[i].car_model_id
+            carCard.color = cars[i].color
+            carCard.estimated_value = cars[i].estimated_value
+            carCard.set()
+
+            cards.append(carCard)
+
+            self.verticalLayout.addWidget(cards[i])
+
+    def show_brand(self):
+        if not self.isLogged(): return
+        self.status = 6
+        self.hide_all()
+
+    def show_model(self):
+        if not self.isLogged(): return
+        self.status = 7
+        self.hide_all()
+
+    def show_part(self):
+        if not self.isLogged(): return
+        self.status = 8
+        self.hide_all()
+
+    def show_services(self):
+        if not self.isLogged(): return
+        self.status = 4
+        self.hide_all()
+        for i in range(len(services)):
+            serviceCard = service_card()
+            serviceCard.setFixedHeight(132)
+            serviceCard.name = services[i].name
+            serviceCard.id = services[i].id
+            serviceCard.phone = services[i].phone
+            serviceCard.address = services[i].address
+            serviceCard.manager = services[i].manager
+            serviceCard.set()
+
+            cards.append(serviceCard)
+
+            self.verticalLayout.addWidget(cards[i])
+
     def show_tasks(self):
         if not self.isLogged(): return
         self.status = 1
-        for i in range(len(clients_cards)):
-            clients_cards[i].deleteLater()
-        clients_cards.clear()
-        for i in range(len(employees_cards)):
-            employees_cards[i].deleteLater()
-        employees_cards.clear()
+        self.hide_all()
         for i in range(len(tasks)):
             tasskCard = task_card()
 
@@ -165,46 +268,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             tasskCard.Priority = tasks[i].Priority
             tasskCard.executor_id = tasks[i].executor_id
             tasskCard.number = i
+            tasskCard.plate = tasks[i].license_plate
+            tasskCard.service_id = tasks[i].service_id
+            tasskCard.part = tasks[i].part_id
             tasskCard.set()
 
-            tasks_cards.append(tasskCard)
+            cards.append(tasskCard)
 
-            self.verticalLayout.addWidget(tasks_cards[i])
+            self.verticalLayout.addWidget(cards[i])
 
     def show_clients(self):
         if not self.isLogged(): return
         self.status = 3
-        for i in range(len(employees_cards)):
-            employees_cards[i].deleteLater()
-        employees_cards.clear()
-        for i in range(len(tasks_cards)):
-            tasks_cards[i].deleteLater()
-        tasks_cards.clear()
+        self.hide_all()
         for i in range(len(clients)):
             clientCard = client_card()
 
             clientCard.setFixedHeight(122)
             clientCard.id = clients[i].id
-            clientCard.title = clients[i].title
+            clientCard.name = clients[i].fName + " " + clients[i].sName + " " + clients[i].pName
             clientCard.phone = clients[i].phone
             clientCard.email = clients[i].email
-            clientCard.city = clients[i].city
-            clientCard.number = i
             clientCard.set()
 
-            clients_cards.append(clientCard)
+            cards.append(clientCard)
 
-            self.verticalLayout.addWidget(clients_cards[i])
+            self.verticalLayout.addWidget(cards[i])
 
     def show_employee(self):
         if not self.isLogged(): return
         self.status = 2
-        for i in range(len(clients_cards)):
-            clients_cards[i].deleteLater()
-        clients_cards.clear()
-        for i in range(len(tasks_cards)):
-            tasks_cards[i].deleteLater()
-        tasks_cards.clear()
+        self.hide_all()
 
         for i in range(len(employees)):
             employee_card = user_card()
@@ -212,15 +306,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             employee_card.setFixedHeight(122)
             employee_card.id = employees[i].id
             employee_card.name = employees[i].name
-            employee_card.phone = employees[i].phone
             employee_card.email = employees[i].email
             employee_card.role = employees[i].role
-            employee_card.number = i
+            employee_card.service = employees[i].service_id
             employee_card.set()
 
-            employees_cards.append(employee_card)
+            cards.append(employee_card)
 
-            self.verticalLayout.addWidget(employees_cards[i])
+            self.verticalLayout.addWidget(cards[i])
 
     def show_add(self):
         if self.status == 1:
@@ -229,10 +322,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         elif self.status == 3:
             self.w6 = add_client(self)
             self.w6.show()
-
-
-    def refresh(self):
-        print("refresh")
+        elif self.status == 4:
+            self.w6 = add_service(self)
+            self.w6.show()
+        elif self.status == 5:
+            self.w6 = add_car(self)
+            self.w6.show()
 
     def fullClose(self):
         self.close()
@@ -246,6 +341,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return False
         return True
 
+
 class LoginWindow(QMainWindow):
     def __init__(self, parent=None):
         super(LoginWindow, self).__init__(parent)
@@ -257,7 +353,7 @@ class LoginWindow(QMainWindow):
         self.parent = parent
 
     def openReg(self):
-        #проверка на права
+        # проверка на права
         if (current_user.login != "postgres"):
             self.ui.lineEdit.setText("")
             self.ui.lineEdit_2.setText("")
@@ -291,10 +387,8 @@ class LoginWindow(QMainWindow):
                         role_and_id = cursor.fetchall()
 
                         for row in role_and_id:
-                                print("job_title = ", row[0], )
-                                current_user.role = row[0]
-                                print("employee_id = ", row[1], "\n")
-                                current_user.id = row[1]
+                            current_user.role = row[0]
+                            current_user.id = row[1]
 
                     except Exception as _ex:
                         print("[INFO] get_job_title_and_id_by_username error. Reason: ", _ex)
@@ -309,13 +403,14 @@ class LoginWindow(QMainWindow):
                 connection.autocommit = True
                 with connection.cursor() as cursor:
                     try:
-                        query_str = f'SELECT job_title, employee_id FROM public.employee WHERE username = \'{self.ui.lineEdit.text()}\''
+                        query_str = f'SELECT job_title, employee_id, employee_service_id FROM employee WHERE username = \'{self.ui.lineEdit.text()}\''
                         cursor.execute(query_str)
                         role_and_id = cursor.fetchall()
 
                         for row in role_and_id:
                             current_user.role = row[0]
                             current_user.id = row[1]
+                            current_user.service_id = row[2]
 
                     except Exception as _ex:
                         print("[INFO] get_job_title_and_id_by_username error. Reason: ", _ex)
@@ -325,6 +420,8 @@ class LoginWindow(QMainWindow):
             MainWindow.view_employees(self.parent)
             MainWindow.view_clients(self.parent)
             MainWindow.view_tasks(self.parent)
+            MainWindow.view_services(self.parent)
+            MainWindow.view_cars(self.parent)
             connection.close()
             self.close()
 
@@ -333,10 +430,6 @@ class LoginWindow(QMainWindow):
             self.ui.lineEdit_2.setText("")
             self.ui.lineEdit.setPlaceholderText("Wrong data")
             self.ui.lineEdit_2.setPlaceholderText("Wrong data")
-
-
-
-
 
 
 class Ui_Login_functions(LoginWindow):

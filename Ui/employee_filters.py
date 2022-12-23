@@ -63,17 +63,6 @@ class Ui_Employee_filters(object):
 
         self.gridLayout1.addWidget(self.sname, 1, 0, 1, 1)
 
-        self.phone = QLineEdit(self.gridLayoutWidget)
-        self.phone.setObjectName(u"phone")
-        self.phone.setStyleSheet(u"text-align: center;\n"
-"font-family: Myriad Pro;\n"
-"color: rgb(123, 115, 27);\n"
-"font-size:25px;;\n"
-"background-color: rgb(36, 37, 39);\n"
-"text-decorations: none;\n"
-"border-style:none ;")
-
-        self.gridLayout1.addWidget(self.phone, 3, 0, 1, 1)
 
         self.fname = QLineEdit(self.gridLayoutWidget)
         self.fname.setObjectName(u"fname")
@@ -129,8 +118,6 @@ class Ui_Employee_filters(object):
         self.search.setText(QtCore.QCoreApplication.translate("Employee_filters", u"SEARCH", None))
         self.sname.setText(QtCore.QCoreApplication.translate("Employee_filters", u"", None))
         self.sname.setPlaceholderText("Second Name")
-        self.phone.setText(QtCore.QCoreApplication.translate("Employee_filters", u"", None))
-        self.phone.setPlaceholderText("Phone")
         self.fname.setText(QtCore.QCoreApplication.translate("Employee_filters", u"", None))
         self.fname.setPlaceholderText("First Name")
         self.pname.setText(QtCore.QCoreApplication.translate("Employee_filters", u"", None))

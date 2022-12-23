@@ -1,16 +1,4 @@
-class Service:
-	id = None
-	name = None
-	address = None
-	Phone = None
-	manager = None
 
-	def __init__(self, id: int, name: str, address: str, Phone: str, manager: str):
-		self.id = id
-		self.name = name
-		self.address = address
-		self.Phone = Phone
-		self.manager = manager
 
 class Part:
 	id = None

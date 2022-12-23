@@ -3,23 +3,23 @@ from PyQt5.QtWidgets import QMainWindow
 
 import config
 import main
-from Ui.Ui_employee import Ui_usercard
+from Ui.Ui_employee import Ui_Part_widget
 from Ui.employee_filters import Ui_Employee_filters
+from noteWidget import cards
 
 
 class Employee:
 	id = None
 	role = None
 	name = None
-	phone = None
 	email = None
 	service_id = None
+	work_experience = None
 
-	def __init__(self, id: int, role: str, name: str, phone: int, email: str, service_id: int):
+	def __init__(self, id: int, role: str, name: str, email: str, service_id: int):
 		self.id = id
 		self.role = role
 		self.name = name
-		self.phone = phone
 		self.email = email
 		self.service_id = service_id
 
@@ -36,10 +36,10 @@ employee = Employee
 
 employees = []
 femployees = []
-employees_cards = []
 
 
-class user_card(QMainWindow, Ui_usercard):
+
+class user_card(QMainWindow, Ui_Part_widget):
 	def __init__(self):
 		super(user_card, self).__init__()
 		self.setupUi(self)
@@ -47,16 +47,15 @@ class user_card(QMainWindow, Ui_usercard):
 		self.id = 0
 		self.name = ""
 		self.email = ""
-		self.phone = ""
 		self.role = ""
-		self.number = 0
+		self.service = 0
 
 	def set(self):
-		self.id_text.setPlainText(str(self.id))
-		self.email_text.setPlainText(str(self.email))
-		self.role_text.setPlainText(str(self.role))
-		self.phone_text.setPlainText(str(self.phone))
-		self.Name_text.setPlainText(str(self.name))
+		self.Id.setPlainText(str(self.id))
+		self.Email.setPlainText(str(self.email))
+		self.Job.setPlainText(str(self.role))
+		self.Service_number.setPlainText(str(self.service))
+		self.Name.setPlainText(str(self.name))
 
 
 
@@ -85,25 +84,19 @@ class employee_filter(QMainWindow):
 					query_str = f'SELECT * FROM employee'
 					s = 0
 					if self.ui.fname.text() != "":
-						query_str += f' WHERE first_name = \'{self.ui.fname.text()}\''
+						query_str += f' WHERE firstname = \'{self.ui.fname.text()}\''
 						s += 1
 					if self.ui.sname.text() != "":
 						if s == 0:
-							query_str += f' WHERE last_name = \'{self.ui.sname.text()}\''
+							query_str += f' WHERE lastname = \'{self.ui.sname.text()}\''
 						else:
-							query_str += f' AND last_name = \'{self.ui.sname.text()}\''
+							query_str += f' AND lastname = \'{self.ui.sname.text()}\''
 						s += 1
 					if self.ui.pname.text() != "":
 						if s == 0:
 							query_str += f' WHERE patronymyc = \'{self.ui.pname.text()}\''
 						else:
 							query_str += f' AND patronymyc = \'{self.ui.pname.text()}\''
-						s += 1
-					if self.ui.phone.text() != "":
-						if s == 0:
-							query_str += f' WHERE phone_number = {int(self.ui.phone.text())}'
-						else:
-							query_str += f' AND phone_number = {int(self.ui.phone.text())}'
 						s += 1
 					if self.ui.email.text() != "":
 						if s == 0:
@@ -123,6 +116,7 @@ class employee_filter(QMainWindow):
 					filtered_employees = cursor.fetchall()
 
 					print('Filtered employees:')
+
 					for row in filtered_employees:
 						print("job_title = ", row[0], )
 						print("first_name = ", row[1])
@@ -134,12 +128,12 @@ class employee_filter(QMainWindow):
 						print("username = ", row[7])
 						print("password = ", row[8], "\n")
 
-						employee = Employee(row[6], row[0], row[1] + " " + row[2] + " " + row[3], row[4], row[5])
+						employee = Employee(row[7], row[5], row[0] + " " + row[1] + " " + row[2], row[6], row[8])
 						femployees.append(employee)
 
-						for i in range(len(employees_cards)):
-							employees_cards[i].deleteLater()
-						employees_cards.clear()
+						for i in range(len(cards)):
+							cards[i].deleteLater()
+						cards.clear()
 
 						for i in range(len(femployees)):
 							employee_card = user_card()
@@ -147,14 +141,14 @@ class employee_filter(QMainWindow):
 							employee_card.setFixedHeight(122)
 							employee_card.id = femployees[i].id
 							employee_card.name = femployees[i].name
-							employee_card.phone = femployees[i].phone
 							employee_card.email = femployees[i].email
 							employee_card.role = femployees[i].role
+							employee_card.service = femployees[i].service_id
 							employee_card.set()
 
-							employees_cards.append(employee_card)
+							cards.append(employee_card)
 
-							main.MainWindow.AddTVert(self.parent, employees_cards[i])
+							main.MainWindow.AddTVert(self.parent, cards[i])
 
 				except Exception as _ex:
 					print("[INFO] Error. Employee filter error. Reason: ", _ex)

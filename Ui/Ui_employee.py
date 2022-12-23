@@ -1,107 +1,125 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtCore import QRect, QSize, QCoreApplication, QMetaObject
+from PyQt5.QtWidgets import QLineEdit, QFrame, QTextBrowser, QTextEdit
 
-class Ui_usercard(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(1390, 122)
-        self.Client_form_8 = QtWidgets.QFrame(Form)
-        self.Client_form_8.setObjectName(u"Client_form_8")
-        self.Client_form_8.setGeometry(QtCore.QRect(10, 0, 1281, 122))
-        self.Client_form_8.setMinimumSize(QtCore.QSize(1281, 122))
-        self.Client_form_8.setMaximumSize(QtCore.QSize(1281, 122))
-        self.Client_form_8.setStyleSheet(u"background-color: rgb(36, 37, 39);\n"
+
+class Ui_Part_widget(object):
+    def setupUi(self, Part_widget):
+        if not Part_widget.objectName():
+            Part_widget.setObjectName(u"Part_widget")
+        Part_widget.resize(1322, 132)
+        self.Part_frame = QFrame(Part_widget)
+        self.Part_frame.setObjectName(u"Part_frame")
+        self.Part_frame.setGeometry(QRect(0, 0, 1281, 122))
+        self.Part_frame.setMinimumSize(QSize(1240, 122))
+        self.Part_frame.setMaximumSize(QSize(1281, 122))
+        self.Part_frame.setStyleSheet(u"background-color: rgb(36, 37, 39);\n"
 "border-style:solid ;\n"
 "    border-width: 2px;\n"
 "    border-color: rgb(123, 115, 27);\n"
 "border-radius: 15px;")
-        self.Client_form_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.Client_form_8.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.Name_text = QtWidgets.QTextBrowser(self.Client_form_8)
-        self.Name_text.setObjectName(u"Name_text")
-        self.Name_text.setGeometry(QtCore.QRect(485, 10, 350, 41))
-        self.Name_text.setStyleSheet(u"text-align: center;\n"
+        self.Part_frame.setFrameShape(QFrame.StyledPanel)
+        self.Part_frame.setFrameShadow(QFrame.Raised)
+        self.Name = QTextBrowser(self.Part_frame)
+        self.Name.setObjectName(u"Name")
+        self.Name.setGeometry(QRect(100, 10, 1091, 41))
+        self.Name.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
 "background-color: rgb(36, 37, 39);\n"
 "text-decorations: none;\n"
 "border-style:none ;")
-        self.phone_text = QtWidgets.QTextBrowser(self.Client_form_8)
-        self.phone_text.setObjectName(u"phone_text")
-        self.phone_text.setGeometry(QtCore.QRect(150, 70, 271, 41))
-        self.phone_text.setStyleSheet(u"text-align: center;\n"
+        self.Job = QTextBrowser(self.Part_frame)
+        self.Job.setObjectName(u"Job")
+        self.Job.setGeometry(QRect(10, 70, 131, 41))
+        self.Job.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
 "background-color: rgb(36, 37, 39);\n"
 "text-decorations: none;\n"
 "border-style:none ;")
-        self.phone_text.setAutoFormatting(QtWidgets.QTextEdit.AutoNone)
-        self.role_text = QtWidgets.QTextBrowser(self.Client_form_8)
-        self.role_text.setObjectName(u"role_text")
-        self.role_text.setGeometry(QtCore.QRect(580, 70, 161, 41))
-        self.role_text.setStyleSheet(u"text-align: center;\n"
+        self.Job.setAutoFormatting(QTextEdit.AutoNone)
+        self.Email = QTextBrowser(self.Part_frame)
+        self.Email.setObjectName(u"Email")
+        self.Email.setGeometry(QRect(1010, 70, 261, 41))
+        self.Email.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
 "background-color: rgb(36, 37, 39);\n"
 "text-decorations: none;\n"
 "border-style:none ;")
-        self.id_text = QtWidgets.QTextBrowser(self.Client_form_8)
-        self.id_text.setObjectName(u"id_text")
-        self.id_text.setGeometry(QtCore.QRect(10, 10, 51, 41))
-        self.id_text.setStyleSheet(u"text-align: center;\n"
+        self.Email.setAutoFormatting(QTextEdit.AutoNone)
+        self.Service = QTextBrowser(self.Part_frame)
+        self.Service.setObjectName(u"Service")
+        self.Service.setGeometry(QRect(220, 70, 111, 41))
+        self.Service.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
 "background-color: rgb(36, 37, 39);\n"
 "text-decorations: none;\n"
 "border-style:none ;")
-        self.email_text = QtWidgets.QTextBrowser(self.Client_form_8)
-        self.email_text.setObjectName(u"email_text")
-        self.email_text.setGeometry(QtCore.QRect(960, 70, 271, 41))
-        self.email_text.setStyleSheet(u"text-align: center;\n"
+        self.Service_number = QTextBrowser(self.Part_frame)
+        self.Service_number.setObjectName(u"Service_number")
+        self.Service_number.setGeometry(QRect(330, 70, 41, 41))
+        self.Service_number.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
 "background-color: rgb(36, 37, 39);\n"
 "text-decorations: none;\n"
 "border-style:none ;")
-        self.email_text.setAutoFormatting(QtWidgets.QTextEdit.AutoNone)
+        self.Id = QTextBrowser(self.Part_frame)
+        self.Id.setObjectName(u"Id")
+        self.Id.setGeometry(QRect(10, 10, 41, 41))
+        self.Id.setStyleSheet(u"text-align: center;\n"
+"font-family: Myriad Pro;\n"
+"color: rgb(123, 115, 27);\n"
+"font-size:25px;;\n"
+"background-color: rgb(36, 37, 39);\n"
+"text-decorations: none;\n"
+"border-style:none ;")
 
-        self.retranslateUi(Form)
+        self.retranslateUi(Part_widget)
 
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(Part_widget)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QtCore.QCoreApplication.translate("Form", u"Form", None))
-        self.Name_text.setHtml(QtCore.QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+    def retranslateUi(self, Part_widget):
+        Part_widget.setWindowTitle(QCoreApplication.translate("Part_widget", u"Form", None))
+        self.Name.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:25px;\">Name</span></p></body></html>", None))
-        self.phone_text.setHtml(QtCore.QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.Job.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:25px;\">Phone</span></p></body></html>", None))
-        self.role_text.setHtml(QtCore.QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:25px;\">employee</span></p></body></html>", None))
+        self.Email.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma'; font-size:16pt;\">City</span></p></body></html>", None))
-        self.id_text.setHtml(QtCore.QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:25px;\">email</span></p></body></html>", None))
+        self.Service.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:25px;\">ID</span></p></body></html>", None))
-        self.email_text.setHtml(QtCore.QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma'; font-size:16pt;\">Sevice id:</span></p></body></html>", None))
+        self.Service_number.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:25px;\">Email</span></p></body></html>", None))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma'; font-size:16pt;\">12</span></p></body></html>", None))
+        self.Id.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma'; font-size:16pt;\">12</span></p></body></html>", None))
+
     # retranslateUi
 

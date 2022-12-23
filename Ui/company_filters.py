@@ -37,11 +37,11 @@ class Ui_CLients_filters(object):
 "    border-color: rgb(123, 115, 27);\n"
 "border-radius: 15px;")
 
-        self.gridLayout1.addWidget(self.search, 4, 0, 1, 1)
+        self.gridLayout1.addWidget(self.search, 5, 0, 1, 1)
 
-        self.city = QLineEdit(self.gridLayoutWidget)
-        self.city.setObjectName(u"city")
-        self.city.setStyleSheet(u"text-align: center;\n"
+        self.sName = QLineEdit(self.gridLayoutWidget)
+        self.sName.setObjectName(u"city")
+        self.sName.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
@@ -49,7 +49,7 @@ class Ui_CLients_filters(object):
 "text-decorations: none;\n"
 "border-style:none ;")
 
-        self.gridLayout1.addWidget(self.city, 1, 0, 1, 1)
+        self.gridLayout1.addWidget(self.sName, 1, 0, 1, 1)
 
         self.phone = QLineEdit(self.gridLayoutWidget)
         self.phone.setObjectName(u"phone")
@@ -61,11 +61,11 @@ class Ui_CLients_filters(object):
 "text-decorations: none;\n"
 "border-style:none ;")
 
-        self.gridLayout1.addWidget(self.phone, 3, 0, 1, 1)
+        self.gridLayout1.addWidget(self.phone, 4, 0, 1, 1)
 
-        self.company_name = QLineEdit(self.gridLayoutWidget)
-        self.company_name.setObjectName(u"company_name")
-        self.company_name.setStyleSheet(u"text-align: center;\n"
+        self.fName = QLineEdit(self.gridLayoutWidget)
+        self.fName.setObjectName(u"company_name")
+        self.fName.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
@@ -73,7 +73,19 @@ class Ui_CLients_filters(object):
 "text-decorations: none;\n"
 "border-style:none ;")
 
-        self.gridLayout1.addWidget(self.company_name, 0, 0, 1, 1)
+        self.gridLayout1.addWidget(self.fName, 0, 0, 1, 1)
+
+        self.pName = QLineEdit(self.gridLayoutWidget)
+        self.pName.setObjectName(u"company_name")
+        self.pName.setStyleSheet(u"text-align: center;\n"
+                                 "font-family: Myriad Pro;\n"
+                                 "color: rgb(123, 115, 27);\n"
+                                 "font-size:25px;;\n"
+                                 "background-color: rgb(36, 37, 39);\n"
+                                 "text-decorations: none;\n"
+                                 "border-style:none ;")
+
+        self.gridLayout1.addWidget(self.pName, 2, 0, 1, 1)
 
         self.email = QLineEdit(self.gridLayoutWidget)
         self.email.setObjectName(u"email")
@@ -85,7 +97,7 @@ class Ui_CLients_filters(object):
 "text-decorations: none;\n"
 "border-style:none ;")
 
-        self.gridLayout1.addWidget(self.email, 2, 0, 1, 1)
+        self.gridLayout1.addWidget(self.email, 3, 0, 1, 1)
 
 
         self.retranslateUi(CLients_filters)
@@ -101,12 +113,14 @@ class Ui_CLients_filters(object):
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma'; font-size:22pt;\">FILTERS</span></p></body></html>", None))
         self.search.setText(QtCore.QCoreApplication.translate("CLients_filters", u"SEARCH", None))
-        self.city.setText(QtCore.QCoreApplication.translate("CLients_filters", u"", None))
-        self.city.setPlaceholderText("City")
+        self.fName.setText(QtCore.QCoreApplication.translate("CLients_filters", u"", None))
+        self.fName.setPlaceholderText("First Name")
         self.phone.setText(QtCore.QCoreApplication.translate("CLients_filters", u"", None))
         self.phone.setPlaceholderText("Phone")
-        self.company_name.setText(QtCore.QCoreApplication.translate("CLients_filters", u"", None))
-        self.company_name.setPlaceholderText("CompanyName")
+        self.sName.setText(QtCore.QCoreApplication.translate("CLients_filters", u"", None))
+        self.sName.setPlaceholderText("Second Name")
+        self.pName.setText(QtCore.QCoreApplication.translate("CLients_filters", u"", None))
+        self.pName.setPlaceholderText("Patronymyc")
         self.email.setText(QtCore.QCoreApplication.translate("CLients_filters", u"", None))
         self.email.setPlaceholderText("Email")
     # retranslateUi

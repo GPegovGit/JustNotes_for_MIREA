@@ -51,17 +51,6 @@ class Ui_tasks_filters(object):
 
         self.gridLayout1.addWidget(self.search, 6, 0, 1, 1)
 
-        self.Priority = QLineEdit(self.gridLayoutWidget)
-        self.Priority.setObjectName(u"Priority")
-        self.Priority.setStyleSheet(u"text-align: center;\n"
-"font-family: Myriad Pro;\n"
-"color: rgb(123, 115, 27);\n"
-"font-size:25px;;\n"
-"background-color: rgb(36, 37, 39);\n"
-"text-decorations: none;\n"
-"border-style:none ;")
-
-        self.gridLayout1.addWidget(self.Priority, 3, 0, 1, 1)
 
         self.Status = QLineEdit(self.gridLayoutWidget)
         self.Status.setObjectName(u"Status")
@@ -99,17 +88,6 @@ class Ui_tasks_filters(object):
 
         self.gridLayout1.addWidget(self.Author_id, 0, 0, 1, 1)
 
-        self.Contract_id = QLineEdit(self.gridLayoutWidget)
-        self.Contract_id.setObjectName(u"Contract_id")
-        self.Contract_id.setStyleSheet(u"text-align: center;\n"
-"font-family: Myriad Pro;\n"
-"color: rgb(123, 115, 27);\n"
-"font-size:25px;;\n"
-"background-color: rgb(36, 37, 39);\n"
-"text-decorations: none;\n"
-"border-style:none ;")
-
-        self.gridLayout1.addWidget(self.Contract_id, 5, 0, 1, 1)
 
 
         self.retranslateUi(tasks_filters)
@@ -125,17 +103,13 @@ class Ui_tasks_filters(object):
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma'; font-size:22pt;\">FILTERS</span></p></body></html>", None))
         self.Task_id.setText(QtCore.QCoreApplication.translate("tasks_filters", u"", None))
-        self.Task_id.setPlaceholderText("Task_id")
+        self.Task_id.setPlaceholderText("Order id")
         self.search.setText(QtCore.QCoreApplication.translate("tasks_filters", u"SEARCH", None))
-        self.Priority.setText(QtCore.QCoreApplication.translate("tasks_filters", u"", None))
-        self.Priority.setPlaceholderText("Priority")
         self.Status.setText(QtCore.QCoreApplication.translate("tasks_filters", u"", None))
         self.Status.setPlaceholderText("Status")
         self.Executor_id.setText(QtCore.QCoreApplication.translate("tasks_filters", u"", None))
         self.Executor_id.setPlaceholderText("Executor_id")
         self.Author_id.setText(QtCore.QCoreApplication.translate("tasks_filters", u"", None))
         self.Author_id.setPlaceholderText("Author_id")
-        self.Contract_id.setText(QtCore.QCoreApplication.translate("tasks_filters", u"", None))
-        self.Contract_id.setPlaceholderText("Contract_id")
     # retranslateUi
 

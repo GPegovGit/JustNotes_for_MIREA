@@ -4,6 +4,7 @@
 from main import *
 
 from Ui.ui_main import *
+from main import MainWindow
 
 
 class UIFunctions(MainWindow):
@@ -31,6 +32,10 @@ class UIFunctions(MainWindow):
         self.Filter.clicked.connect(lambda: self.openFilters())
 
         self.Add_task.clicked.connect(lambda: self.show_add())
+
+        self.Show_service.clicked.connect(lambda: self.show_services())
+
+        self.Show_car.clicked.connect(lambda: self.show_cars())
 
 
         #

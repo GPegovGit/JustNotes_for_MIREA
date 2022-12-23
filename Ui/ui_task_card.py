@@ -8,7 +8,7 @@ class ui_task(object):
         Form.resize(1390, 148)
         self.Task_form = QtWidgets.QFrame(Form)
         self.Task_form.setObjectName(u"Task_form")
-        self.Task_form.setGeometry(QtCore.QRect(10, 0, 1281, 122))
+        self.Task_form.setGeometry(QtCore.QRect(5, 0, 1281, 122))
         self.Task_form.setMinimumSize(QtCore.QSize(1281, 122))
         self.Task_form.setMaximumSize(QtCore.QSize(1281, 122))
         self.Task_form.setStyleSheet(u"background-color: rgb(36, 37, 39);\n"

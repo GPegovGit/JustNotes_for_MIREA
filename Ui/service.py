@@ -22,7 +22,7 @@ class Ui_Service_form(object):
         self.Service_frame.setFrameShadow(QFrame.Raised)
         self.Name = QTextBrowser(self.Service_frame)
         self.Name.setObjectName(u"Name")
-        self.Name.setGeometry(QRect(540, 10, 191, 41))
+        self.Name.setGeometry(QRect(50, 10, 500, 41))
         self.Name.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"

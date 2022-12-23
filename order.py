@@ -2,6 +2,7 @@ import PyQt5
 import psycopg2
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QMainWindow
+from psycopg2 import sql
 
 import config
 import main
@@ -10,6 +11,7 @@ from Ui.changeTask import Ui_change_task
 from Ui.tasks_filrers import Ui_tasks_filters
 from Ui.ui_task_card import ui_task
 from employee import current_user
+from noteWidget import cards
 
 
 class Task:
@@ -43,7 +45,6 @@ class Task:
 task = Task
 tasks = []
 ftasks = []
-tasks_cards = []
 
 
 class change(QMainWindow, Ui_change_task):
@@ -54,7 +55,6 @@ class change(QMainWindow, Ui_change_task):
 		Ui_Change_Task_functions.ui_change_func(self)
 		self.Task_id.setText(str(self.parent.executor_id))
 		print(parent.number)
-		print(tasks)
 		self.Priority.setText(self.parent.status)
 		self.dateTimeEdit.setDate(tasks[self.parent.number].deadline)
 		if current_user.id != tasks[self.parent.number].executor_id and current_user.id != tasks[
@@ -70,9 +70,9 @@ class change(QMainWindow, Ui_change_task):
 		self.parent.Deadline.setPlainText(str(self.parent.deadline))
 		self.parent.Task_Status.setPlainText(self.parent.status)
 
-		tasks[self.parent.id - 1].deadline = self.dateTimeEdit.date()
-		tasks[self.parent.id - 1].executor_id = int(self.parent.executor_id)
-		tasks[self.parent.id - 1].status = str(self.parent.status)
+		tasks[self.parent.number].deadline = self.dateTimeEdit.date()
+		tasks[self.parent.number].executor_id = int(self.parent.executor_id)
+		tasks[self.parent.number].status = str(self.parent.status)
 
 		if (self.parent.status == "Finished" or self.parent.status == "finished"):
 			self.parent.Change_task.hide()
@@ -87,9 +87,18 @@ class change(QMainWindow, Ui_change_task):
 			connection.autocommit = True
 			with connection.cursor() as cursor:
 				try:
+
+					# deadline = sql.Literal(self.parent.deadline)
+					# executor_employee_id = sql.Literal(tasks[self.parent.number].executor_id)
+					# status = sql.Literal(tasks[self.parent.number].status)
+					# order_id = sql.Literal(self.parent.id)
+					# query = sql.SQL(
+					# 	f'UPDATE service_order SET deadline = \'{deadline}\', executor_employee_id = {executor_employee_id}, status = \'{status}\' WHERE order_id = {order_id}')
+					# cursor.execute(query)
+
 					cursor.execute(
-						f'UPDATE service_order SET deadline = \'{self.parent.deadline}\',executor_employee_id = {tasks[self.parent.id - 1].executor_id}, status = \'{tasks[self.parent.id - 1].status}\' WHERE order_id = {self.parent.id}')
-					print('Task updated succesfully')
+						f'UPDATE service_order SET deadline = \'{self.parent.deadline}\',executor_employee_id = {tasks[self.parent.number].executor_id}, status = \'{tasks[self.parent.number].status}\' WHERE order_id = {self.parent.id}')
+					# print('Task updated succesfully')
 				except Exception as _ex:
 					print("[INFO] Error. New task not added. Reason: ", _ex)
 
@@ -122,6 +131,7 @@ class task_card(QMainWindow, ui_task):
 
 	def set(self):
 		self.Task_text.setPlainText(self.text)
+		self.number = len(cards)
 		self.Executor_number.setPlainText(str(self.executor_id))
 		self.Task_id.setPlainText(str(self.id))
 		self.Deadline.setPlainText(str(self.deadline))
@@ -169,10 +179,11 @@ class add_task(QMainWindow):
 			connection.autocommit = True
 			with connection.cursor() as cursor:
 				try:
-					cursor.execute(f'SELECT max(order_id) from service_order')
-					contracts = cursor.fetchall()
+					query = sql.SQL("SELECT max(order_id) from service_order")
+					cursor.execute(query)
+					maxid = cursor.fetchall()
 					idt = 1
-					for row in contracts:
+					for row in maxid:
 						idt += row[0]
 				except Exception as _ex:
 					print("[INFO] Error. clients view error. Reason: ", _ex)
@@ -198,11 +209,9 @@ class add_task(QMainWindow):
 		taskCard.part = task.part_id
 		taskCard.set()
 
-		tasks_cards.append(taskCard)
+		cards.append(taskCard)
 
 		main.MainWindow.AddTVert(self.parent, taskCard)
-
-		###добавить в бд
 
 		currenttime = (QtCore.QDate.currentDate().toString('dd.MM.yyyy'))
 
@@ -216,10 +225,21 @@ class add_task(QMainWindow):
 			connection.autocommit = True
 			with connection.cursor() as cursor:
 				try:
-					cursor.execute(
-						f'INSERT INTO service_order (deadline, appointment_date, executor_employee_id, author_employee_id, description, status, license_plate, customer_id, service_id, part_id) VALUES ('
-						f'\'{taskCard.deadline}\', \'{currenttime}\', {task.executor_id}, {task.author_id}, \'{task.text}\', \'{task.status}\', \'{taskCard.plate}\', {task.customer_id}, {task.service_id}, {task.part_id})')
-					print('New task added succesfully')
+					s1 = sql.Literal(taskCard.deadline)
+					s2 = sql.Literal(currenttime)
+					s3 = sql.Literal(task.executor_id)
+					s4 = sql.Literal(task.author_id)
+					s5 = sql.Literal(task.text)
+					s6 = sql.Literal(task.status)
+					s7 = sql.Literal(taskCard.plate)
+					s8 = sql.Literal(task.customer_id)
+					s9 = sql.Literal(task.service_id)
+					s10 = sql.Literal(task.part_id)
+					query = sql.SQL(
+						"INSERT INTO service_order(deadline, appointment_date, executor_employee_id, author_employee_id, description, status, license_plate, customer_id, service_id, part_id) VALUES ({})").format(
+						sql.SQL(', ').join([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10]))
+					cursor.execute(query)
+
 				except Exception as _ex:
 					print("[INFO] Error. New task not added. Reason: ", _ex)
 					return
@@ -260,7 +280,7 @@ class task_filter(QMainWindow):
 			connection.autocommit = True
 			with connection.cursor() as cursor:
 				try:
-					query_str = f'SELECT * FROM task'
+					query_str = f'SELECT * FROM service_order'
 					s = 0
 					if self.ui.Author_id.text() != "":
 						query_str += f' WHERE author_employee_id = {int(self.ui.Author_id.text())}'
@@ -273,9 +293,9 @@ class task_filter(QMainWindow):
 						s += 1
 					if self.ui.Task_id.text() != "":
 						if s == 0:
-							query_str += f' WHERE task_id = {int(self.ui.Task_id.text())}'
+							query_str += f' WHERE order_id = {int(self.ui.Task_id.text())}'
 						else:
-							query_str += f' AND task_id = {int(self.ui.Task_id.text())}'
+							query_str += f' AND order_id = {int(self.ui.Task_id.text())}'
 						s += 1
 					if self.ui.Status.text() != "":
 						if s == 0:
@@ -288,39 +308,34 @@ class task_filter(QMainWindow):
 					cursor.execute(query_str)
 					filtered_tasks = cursor.fetchall()
 
-					print('Filtered tasks:')
 					for row in filtered_tasks:
-						print("deadline = ", row[0], )
-						print("appointment_date = ", row[1])
-						print("executor_employee_id = ", row[2])
-						print("author_employee_id = ", row[3])
-						print("task_id = ", row[4])
-						print("task_description = ", row[5])
-						print("priority = ", row[6])
-						print("status = ", row[7])
-						print("contract_id = ", row[8], "\n")
 						format = "dd.MM.yyyy"
-						tempdate = PyQt5.QtCore.QDate.fromString(row[8], format)
-						task = Task(row[2], row[3], tempdate, row[1], row[0], row[6], row[4], row[5])
+						tempdate = PyQt5.QtCore.QDate.fromString(row[10], format)
+						task = Task(row[5], row[3], tempdate, row[7], row[8], row[6], row[0], row[2], row[1], row[4])
 						ftasks.append(task)
 
-					for i in range(len(tasks_cards)):
-						tasks_cards[i].deleteLater()
-					tasks_cards.clear()
+					for i in range(len(cards)):
+						cards[i].deleteLater()
+					cards.clear()
 
 					for i in range(len(ftasks)):
-						tasskCard = task_card()
 
+						tasskCard = task_card()
 						tasskCard.setFixedHeight(122)
+						tasskCard.number = len(cards)
 						tasskCard.text = ftasks[i].text
 						tasskCard.id = ftasks[i].id
 						tasskCard.deadline = ftasks[i].deadline.toString('yyyy.MM.dd')
 						tasskCard.status = ftasks[i].status
 						tasskCard.executor_id = ftasks[i].executor_id
+						tasskCard.plate = ftasks[i].license_plate
+						tasskCard.service_id = ftasks[i].service_id
+						tasskCard.part = ftasks[i].part_id
 						tasskCard.set()
+						tasskCard.Change_task.hide()
 
-						tasks_cards.append(tasskCard)
-					main.MainWindow.AddTVert(self.parent, tasks_cards[i])
+						cards.append(tasskCard)
+						main.MainWindow.AddTVert(self.parent, cards[i])
 
 				except Exception as _ex:
 					print("[INFO] Error. Task filter error. Reason: ", _ex)
