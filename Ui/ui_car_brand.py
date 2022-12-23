@@ -2,11 +2,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QRect, QSize, QCoreApplication, QMetaObject
 from PyQt5.QtWidgets import QLineEdit, QFrame, QTextBrowser, QTextEdit
 
-class Ui_Part_widget(object):
+class Ui_Car_Brand_widget(object):
     def setupUi(self, Part_widget):
         if not Part_widget.objectName():
             Part_widget.setObjectName(u"Part_widget")
-        Part_widget.resize(1322, 132)
+        Part_widget.resize(1322, 61)
         self.Part_frame = QFrame(Part_widget)
         self.Part_frame.setObjectName(u"Part_frame")
         self.Part_frame.setGeometry(QRect(0, 0, 1281, 61))
@@ -31,7 +31,7 @@ class Ui_Part_widget(object):
 "border-style:none ;")
         self.ID = QTextBrowser(self.Part_frame)
         self.ID.setObjectName(u"ID")
-        self.ID.setGeometry(QRect(10, 10, 31, 41))
+        self.ID.setGeometry(QRect(10, 10, 51, 41))
         self.ID.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"

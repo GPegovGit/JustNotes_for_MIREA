@@ -37,6 +37,14 @@ class UIFunctions(MainWindow):
 
         self.Show_car.clicked.connect(lambda: self.show_cars())
 
+        self.Show_car_brand.clicked.connect(lambda: self.show_car_brand())
+
+        self.Show_model_data.clicked.connect(lambda: self.show_model())
+
+        self.Show_parts.clicked.connect(lambda: self.show_part())
+
+
+
 
         #
         # self.Close_button.clicked.connect(db.close)

@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QRect, QSize, QCoreApplication, QMetaObject
 from PyQt5.QtWidgets import QLineEdit, QFrame, QTextBrowser, QTextEdit
 
-class Ui_Part_widget(object):
+class Ui_Model_widget(object):
     def setupUi(self, Part_widget):
         if not Part_widget.objectName():
             Part_widget.setObjectName(u"Part_widget")
@@ -19,10 +19,10 @@ class Ui_Part_widget(object):
 "border-radius: 15px;")
         self.Part_frame.setFrameShape(QFrame.StyledPanel)
         self.Part_frame.setFrameShadow(QFrame.Raised)
-        self.Part_name = QTextBrowser(self.Part_frame)
-        self.Part_name.setObjectName(u"Part_name")
-        self.Part_name.setGeometry(QRect(100, 10, 1091, 41))
-        self.Part_name.setStyleSheet(u"text-align: center;\n"
+        self.Model_name = QTextBrowser(self.Part_frame)
+        self.Model_name.setObjectName(u"Part_name")
+        self.Model_name.setGeometry(QRect(100, 10, 1091, 41))
+        self.Model_name.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
@@ -61,20 +61,20 @@ class Ui_Part_widget(object):
 "text-decorations: none;\n"
 "border-style:none ;")
         self.Price.setAutoFormatting(QTextEdit.AutoNone)
-        self.ID_2 = QTextBrowser(self.Part_frame)
-        self.ID_2.setObjectName(u"ID_2")
-        self.ID_2.setGeometry(QRect(150, 73, 31, 41))
-        self.ID_2.setStyleSheet(u"text-align: center;\n"
+        self.Year = QTextBrowser(self.Part_frame)
+        self.Year.setObjectName(u"ID_2")
+        self.Year.setGeometry(QRect(150, 70, 122, 41))
+        self.Year.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
 "background-color: rgb(36, 37, 39);\n"
 "text-decorations: none;\n"
 "border-style:none ;")
-        self.ID_3 = QTextBrowser(self.Part_frame)
-        self.ID_3.setObjectName(u"ID_3")
-        self.ID_3.setGeometry(QRect(1240, 73, 31, 41))
-        self.ID_3.setStyleSheet(u"text-align: center;\n"
+        self.BrandID = QTextBrowser(self.Part_frame)
+        self.BrandID.setObjectName(u"ID_3")
+        self.BrandID.setGeometry(QRect(1240, 70, 31, 41))
+        self.BrandID.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
 "font-size:25px;;\n"
@@ -89,7 +89,7 @@ class Ui_Part_widget(object):
 
     def retranslateUi(self, Part_widget):
         Part_widget.setWindowTitle(QCoreApplication.translate("Part_widget", u"Form", None))
-        self.Part_name.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.Model_name.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
@@ -109,12 +109,12 @@ class Ui_Part_widget(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:25px;\">Brand ID:</span></p></body></html>", None))
-        self.ID_2.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.Year.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma'; font-size:16pt;\">ID</span></p></body></html>", None))
-        self.ID_3.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BrandID.setHtml(QCoreApplication.translate("Part_widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Myriad Pro'; font-size:25px; font-weight:400; font-style:normal;\">\n"

@@ -2,27 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16b2a115-02f1-46e4-baaf-07c4678b2512" name="Changes" comment="da">
-      <change afterPath="$PROJECT_DIR$/Ui/add_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ui/ui_add_car.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ui/Ui_add_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ui/Ui_add_part.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ui/ui_add_car_brand.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui/Ui_company.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/Ui_company.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui/Ui_employee.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/Ui_employee.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui/company_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/company_filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui/employee_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/employee_filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui/tasks_filrers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/tasks_filrers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui/ui_car.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_car.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui/ui_car_brand.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_car_brand.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ui/ui_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui/ui_registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_registration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui/ui_task_card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_task_card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car.py" beforeDir="false" afterPath="$PROJECT_DIR$/car.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/employee.py" beforeDir="false" afterPath="$PROJECT_DIR$/employee.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui/ui_model_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui/ui_model_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car_brand.py" beforeDir="false" afterPath="$PROJECT_DIR$/car_brand.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/noteWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/noteWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order.py" beforeDir="false" afterPath="$PROJECT_DIR$/order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget_classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part.py" beforeDir="false" afterPath="$PROJECT_DIR$/part.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +224,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671653562214</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="da">
+      <created>1671795042617</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671795042617</updated>
+    </task>
+    <task id="LOCAL-00003" summary="da">
+      <created>1671798271624</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671798271624</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

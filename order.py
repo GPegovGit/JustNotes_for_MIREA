@@ -87,15 +87,6 @@ class change(QMainWindow, Ui_change_task):
 			connection.autocommit = True
 			with connection.cursor() as cursor:
 				try:
-
-					# deadline = sql.Literal(self.parent.deadline)
-					# executor_employee_id = sql.Literal(tasks[self.parent.number].executor_id)
-					# status = sql.Literal(tasks[self.parent.number].status)
-					# order_id = sql.Literal(self.parent.id)
-					# query = sql.SQL(
-					# 	f'UPDATE service_order SET deadline = \'{deadline}\', executor_employee_id = {executor_employee_id}, status = \'{status}\' WHERE order_id = {order_id}')
-					# cursor.execute(query)
-
 					cursor.execute(
 						f'UPDATE service_order SET deadline = \'{self.parent.deadline}\',executor_employee_id = {tasks[self.parent.number].executor_id}, status = \'{tasks[self.parent.number].status}\' WHERE order_id = {self.parent.id}')
 					# print('Task updated succesfully')
@@ -201,7 +192,7 @@ class add_task(QMainWindow):
 		taskCard.number = len(tasks) - 1
 		taskCard.text = task.text
 		taskCard.id = task.id
-		taskCard.deadline = self.ui.dateTimeEdit.text()
+		taskCard.deadline = task.deadline.toString('yyyy.MM.dd')
 		taskCard.status = task.status
 		taskCard.executor_id = task.executor_id
 		taskCard.plate = task.license_plate

@@ -1,5 +1,5 @@
 # from database import *
-
+import datetime
 import hashlib
 import sys
 
@@ -11,11 +11,14 @@ from Ui.ui_autorization import *
 from Ui.ui_functions import *
 from Ui.ui_main import *
 from car import add_car, cars, car_card, Car
+from car_brand import add_car_brand, car_brands, car_brand_card, Car_brand
 from client import clients, client_card, Client, add_client, company_filter
 from employee import employee_filter, employees, user_card, Employee
+from model import models, model_card, add_model, Model
 from noteWidget import *
 from noteWidget import cards
 from order import *
+from part import parts, add_part, part_card
 from service import services, service_card, add_service, Service
 
 
@@ -50,15 +53,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             connection.autocommit = True
             with connection.cursor() as cursor:
                 try:
-                    cursor.execute(
-                        f'SELECT * FROM service_order')
-                    author_tasks = cursor.fetchall()
+                    if (current_user.role == "employee"):
+                        cursor.execute(
+                            f'SELECT * FROM service_order WHERE executor_employee_id =  \'{current_user.id}\'')
+                        author_tasks = cursor.fetchall()
+                        for row in author_tasks:
+                            format = "dd.MM.yyyy"
+                            tempdate = PyQt5.QtCore.QDate.fromString(row[10], format)
+                            task = Task(row[5], row[3], tempdate, row[7], row[8], row[6], row[0], row[2], row[1],
+                                        row[4])
+                            tasks.append(task)
+                    else:
+                        cursor.execute(
+                            f'SELECT * FROM service_order')
+                        author_tasks = cursor.fetchall()
 
-                    for row in author_tasks:
-                        format = "dd.MM.yyyy"
-                        tempdate = PyQt5.QtCore.QDate.fromString(row[10], format)
-                        task = Task(row[5], row[3], tempdate, row[7], row[8], row[6], row[0], row[2], row[1], row[4])
-                        tasks.append(task)
+                        for row in author_tasks:
+                            v = str(row[10])
+                            d = datetime.datetime.strptime(v, '%Y-%m-%d')
+                            dateStr = datetime.date.strftime(d, '%Y.%m.%d')
+                            format = "yyyy.MM.dd"
+                            tempdate = PyQt5.QtCore.QDate.fromString(dateStr, format)
+                            task = Task(row[5], row[3], tempdate, row[7], row[8], row[6], row[0], row[2], row[1],
+                                        row[4])
+                            tasks.append(task)
 
                 except Exception as _ex:
                     print("[INFO] Error. view tasks error. Reason: ", _ex)
@@ -77,7 +95,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             connection.autocommit = True
             with connection.cursor() as cursor:
                 try:
-                    cursor.execute(f'SELECT * FROM customer')
+                    cursor.execute(f'SELECT * FROM customer_view')
                     contracts = cursor.fetchall()
 
                     print('Clients seen by the current user:')
@@ -103,18 +121,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             with connection.cursor() as cursor:
                 try:
                     if (current_user.role == 'employee'):
-                        query = sql.SQL("SELECT * FROM employee WHERE job_title = \'employee\'")
+                        query = sql.SQL("SELECT * FROM employees_view WHERE job_title = \'employee\'")
                         cursor.execute(query)
                         users = cursor.fetchall()
                         for row in users:
-                            employee = Employee(row[7], row[5], row[0] + " " + row[1] + " " + row[2], row[6], row[8])
+                            employee = Employee(row[5], row[3], row[0] + " " + row[1] + " " + row[2], row[4], row[6])
                             employees.append(employee)
+
                     else:
-                        query = sql.SQL("SELECT * FROM employee")
+                        query = sql.SQL("SELECT * FROM employees_view")
                         cursor.execute(query)
                         users = cursor.fetchall()
                         for row in users:
-                            employee = Employee(row[7], row[5], row[0] + " " + row[1] + " " + row[2], row[6], row[8])
+                            employee = Employee(row[5], row[3], row[0] + " " + row[1] + " " + row[2], row[4], row[6])
                             employees.append(employee)
 
                 except Exception as _ex:
@@ -135,12 +154,35 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             connection.autocommit = True
             with connection.cursor() as cursor:
                 try:
-                    query = sql.SQL("SELECT * FROM service")
+                    query = sql.SQL("SELECT * FROM service_view")
                     cursor.execute(query)
                     service_ = cursor.fetchall()
                     for row in service_:
                         service = Service(row[4], row[0], row[1], row[2], row[3])
                         services.append(service)
+                except Exception as _ex:
+                    print("[INFO] Error. Get services error. Reason: ", _ex)
+        except Exception as _ex:
+            print("[INFO] Error. Get services error. Reason: ", _ex)
+
+    def view_carb_brands(self):
+        try:
+            # connect to exist database
+            connection = psycopg2.connect(
+                host=config.host,
+                user=current_user.login,
+                password=current_user.password,
+                database=config.db_name
+            )
+            connection.autocommit = True
+            with connection.cursor() as cursor:
+                try:
+                    query = sql.SQL("SELECT * FROM car_brand")
+                    cursor.execute(query)
+                    service_ = cursor.fetchall()
+                    for row in service_:
+                        brands = Car_brand(row[0], row[1])
+                        car_brands.append(brands)
                 except Exception as _ex:
                     print("[INFO] Error. Get services error. Reason: ", _ex)
         except Exception as _ex:
@@ -158,12 +200,36 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             connection.autocommit = True
             with connection.cursor() as cursor:
                 try:
-                    query = sql.SQL("SELECT * FROM car")
+                    query = sql.SQL("SELECT * FROM cars_view")
                     cursor.execute(query)
                     cars_ = cursor.fetchall()
                     for row in cars_:
                         car = Car(row[0], row[1], row[3], row[2])
                         cars.append(car)
+                except Exception as _ex:
+                    print("[INFO] Error. Get cars error. Reason: ", _ex)
+                    return
+        except Exception as _ex:
+            print("[INFO] Error. Get cars error. Reason: ", _ex)
+
+    def view_models(self):
+        try:
+            # connect to exist database
+            connection = psycopg2.connect(
+                host=config.host,
+                user=current_user.login,
+                password=current_user.password,
+                database=config.db_name
+            )
+            connection.autocommit = True
+            with connection.cursor() as cursor:
+                try:
+                    query = sql.SQL("SELECT * FROM model_data")
+                    cursor.execute(query)
+                    cars_ = cursor.fetchall()
+                    for row in cars_:
+                        model = Model(row[0], row[1], row[3], row[2])
+                        models.append(model)
                 except Exception as _ex:
                     print("[INFO] Error. Get cars error. Reason: ", _ex)
                     return
@@ -203,6 +269,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             cards[i].deleteLater()
         cards.clear()
 
+    def del_all(self):
+        for i in range(len(cards)):
+            cards[i].deleteLater()
+        cards.clear()
+        clients.clear()
+        employees.clear()
+        tasks.clear()
+        services.clear()
+        cars.clear()
+        car_brands.clear()
+        models.clear()
+        parts.clear()
+
     def show_cars(self):
         if not self.isLogged(): return
         self.status = 5
@@ -220,20 +299,54 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.verticalLayout.addWidget(cards[i])
 
-    def show_brand(self):
+    def show_car_brand(self):
         if not self.isLogged(): return
         self.status = 6
         self.hide_all()
+        for i in range(len(car_brands)):
+            carbrandCard = car_brand_card()
+            carbrandCard.setFixedHeight(61)
+            carbrandCard.brand_id = car_brands[i].brand_id
+            carbrandCard.brand_name = car_brands[i].brand_name
+            carbrandCard.set()
+
+            cards.append(carbrandCard)
+
+            self.verticalLayout.addWidget(cards[i])
 
     def show_model(self):
         if not self.isLogged(): return
         self.status = 7
         self.hide_all()
+        for i in range(len(models)):
+            carCard = model_card()
+            carCard.setFixedHeight(122)
+            carCard.brand_id = models[i].brand_id
+            carCard.model_id = models[i].model_id
+            carCard.model_name = models[i].model_name
+            carCard.model_year = models[i].model_year
+            carCard.set()
+
+            cards.append(carCard)
+
+            self.verticalLayout.addWidget(cards[i])
 
     def show_part(self):
         if not self.isLogged(): return
         self.status = 8
         self.hide_all()
+        for i in range(len(parts)):
+            carCard = part_card()
+            carCard.setFixedHeight(122)
+            carCard.part_name = parts[i].part_name
+            carCard.part_manufacturer_name = parts[i].part_manufacturer_name
+            carCard.part_id = parts[i].part_id
+            carCard.part_price = parts[i].part_price
+            carCard.set()
+
+            cards.append(carCard)
+
+            self.verticalLayout.addWidget(cards[i])
 
     def show_services(self):
         if not self.isLogged(): return
@@ -328,7 +441,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         elif self.status == 5:
             self.w6 = add_car(self)
             self.w6.show()
-
+        elif self.status == 6:
+            self.w6 = add_car_brand(self)
+            self.w6.show()
+        elif self.status == 7:
+            self.w6 = add_model(self)
+            self.w6.show()
+        elif self.status == 8:
+            self.w6 = add_part(self)
+            self.w6.show()
     def fullClose(self):
         self.close()
         self.w2.close()
@@ -417,11 +538,14 @@ class LoginWindow(QMainWindow):
                 current_user.password = hashlib.sha1(self.ui.lineEdit_2.text().encode()).hexdigest()
             current_user.login = self.ui.lineEdit.text()
 
+            MainWindow.del_all(self.parent)
             MainWindow.view_employees(self.parent)
             MainWindow.view_clients(self.parent)
             MainWindow.view_tasks(self.parent)
             MainWindow.view_services(self.parent)
             MainWindow.view_cars(self.parent)
+            MainWindow.view_carb_brands(self.parent)
+            MainWindow.view_models(self.parent)
             connection.close()
             self.close()
 
