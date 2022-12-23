@@ -18,7 +18,7 @@ from model import models, model_card, add_model, Model
 from noteWidget import *
 from noteWidget import cards
 from order import *
-from part import parts, add_part, part_card
+from part import parts, add_part, part_card, Part
 from service import services, service_card, add_service, Service
 
 
@@ -230,6 +230,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     for row in cars_:
                         model = Model(row[0], row[1], row[3], row[2])
                         models.append(model)
+                except Exception as _ex:
+                    print("[INFO] Error. Get cars error. Reason: ", _ex)
+                    return
+        except Exception as _ex:
+            print("[INFO] Error. Get cars error. Reason: ", _ex)
+
+    def view_parts(self):
+        try:
+            # connect to exist database
+            connection = psycopg2.connect(
+                host=config.host,
+                user=current_user.login,
+                password=current_user.password,
+                database=config.db_name
+            )
+            connection.autocommit = True
+            with connection.cursor() as cursor:
+                try:
+                    query = sql.SQL("SELECT * FROM part")
+                    cursor.execute(query)
+                    cars_ = cursor.fetchall()
+                    for row in cars_:
+                        part = Part(row[0], row[1], row[2], row[3])
+                        parts.append(part)
                 except Exception as _ex:
                     print("[INFO] Error. Get cars error. Reason: ", _ex)
                     return
@@ -546,6 +570,7 @@ class LoginWindow(QMainWindow):
             MainWindow.view_cars(self.parent)
             MainWindow.view_carb_brands(self.parent)
             MainWindow.view_models(self.parent)
+            MainWindow.view_parts(self.parent)
             connection.close()
             self.close()
 

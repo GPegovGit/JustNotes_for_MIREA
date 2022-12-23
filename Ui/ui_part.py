@@ -42,7 +42,7 @@ class Ui_Part_widget(object):
         self.Manufacture.setAutoFormatting(QTextEdit.AutoNone)
         self.ID = QTextBrowser(self.Part_frame)
         self.ID.setObjectName(u"ID")
-        self.ID.setGeometry(QRect(10, 10, 31, 41))
+        self.ID.setGeometry(QRect(10, 10, 65, 41))
         self.ID.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"

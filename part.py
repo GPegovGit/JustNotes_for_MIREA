@@ -64,8 +64,63 @@ class add_part(QMainWindow):
 		Ui_Add_Part_brand_functions.ui_add_func(self)
 		self.parent = parent
 
-	# def addMPart(self):
+	def addMPart(self):
+		idt = 1
+		try:
+			connection = psycopg2.connect(
+				host=config.host,
+				user=current_user.login,
+				password=current_user.password,
+				database=config.db_name
+			)
+			connection.autocommit = True
+			with connection.cursor() as cursor:
+				try:
+					query = sql.SQL("SELECT max(part_id) from part")
+					cursor.execute(query)
+					maxid = cursor.fetchall()
+					for row in maxid:
+						idt += row[0]
+				except Exception as _ex:
+					print("[INFO] Error. clients view error. Reason: ", _ex)
+		except Exception as _ex:
+			print("[INFO] Error. clients view error. Reason: ", _ex)
 
+		part = Part(self.ui.Name.text(), self.ui.Manufacturer.text(), str(idt), self.ui.Price.text())
+
+		parts.append(part)
+		for i in range(3):
+			carCard = part_card()
+			carCard.setFixedHeight(122)
+			carCard.part_name = part.part_name
+			carCard.part_manufacturer_name = part.part_manufacturer_name
+			carCard.part_id = idt
+			carCard.part_price = part.part_price
+			carCard.set()
+
+			cards.append(carCard)
+
+			main.MainWindow.AddTVert(self.parent, carCard)
+			idt += 1
+
+		try:
+			connection = psycopg2.connect(
+				host=config.host,
+				user=current_user.login,
+				password=current_user.password,
+				database=config.db_name
+			)
+			connection.autocommit = True
+			with connection.cursor() as cursor:
+				try:
+					cursor.execute(
+						f'BEGIN; INSERT INTO part(part_name, part_manufacturer_name, part_price) VALUES (\'{carCard.part_name}\', \'{carCard.part_manufacturer_name}\', {carCard.part_price}); INSERT INTO part(part_name, part_manufacturer_name, part_price) VALUES (\'{carCard.part_name}\', \'{carCard.part_manufacturer_name}\', {carCard.part_price}); INSERT INTO part(part_name, part_manufacturer_name, part_price) VALUES (\'{carCard.part_name}\', \'{carCard.part_manufacturer_name}\', {carCard.part_price}); COMMIT; ')
+				except Exception as _ex:
+					print("[INFO] Error. New task not added. Reason: ", _ex)
+		except Exception as _ex:
+			print("[INFO] Error while working with PostgreSQL", _ex)
+			self.close()
+		self.close()
 
 
 	def addPart(self):
@@ -94,6 +149,7 @@ class add_part(QMainWindow):
 		part = Part(self.ui.Name.text(), self.ui.Manufacturer.text(), str(idt), self.ui.Price.text())
 
 		parts.append(part)
+
 
 		carCard = part_card()
 		carCard.setFixedHeight(122)
@@ -137,4 +193,4 @@ class add_part(QMainWindow):
 class Ui_Add_Part_brand_functions(add_part):
 	def ui_add_func(self):
 		self.ui.search.clicked.connect(self.addPart)
-		# self.ui.search.clicked.connect(self.addMPart)
+		self.ui.search_2.clicked.connect(self.addMPart)
