@@ -56,7 +56,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         icon = QtGui.QIcon()
-        icon.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Collections", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Collections", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_tasks.setIcon(icon)
         self.Show_tasks.setIconSize(QtCore.QSize(35, 35))
 
@@ -69,7 +69,7 @@ class Ui_MainWindow(object):
         self.Show_car.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
                                   "border-radius: 32px;")
         icon3 = QtGui.QIcon()
-        icon3.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Car.png", QtCore.QSize(),
+        icon3.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Car.png", QtCore.QSize(),
                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_car.setIcon(icon3)
         self.Show_car.setIconSize(QtCore.QSize(45, 45))
@@ -81,7 +81,7 @@ class Ui_MainWindow(object):
         self.Show_car_brand.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
                                     "border-radius: 32px;")
         icon3 = QtGui.QIcon()
-        icon3.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Brand.png", QtCore.QSize(),
+        icon3.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Brand.png", QtCore.QSize(),
                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_car_brand.setIcon(icon3)
         self.Show_car_brand.setIconSize(QtCore.QSize(45, 45))
@@ -93,7 +93,7 @@ class Ui_MainWindow(object):
         self.Show_model_data.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
                                           "border-radius: 32px;")
         icon3 = QtGui.QIcon()
-        icon3.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Model.png", QtCore.QSize(),
+        icon3.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Model.png", QtCore.QSize(),
                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_model_data.setIcon(icon3)
         self.Show_model_data.setIconSize(QtCore.QSize(45, 45))
@@ -105,7 +105,7 @@ class Ui_MainWindow(object):
         self.Show_parts.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
                                            "border-radius: 32px;")
         icon3 = QtGui.QIcon()
-        icon3.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Parts.png", QtCore.QSize(),
+        icon3.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Parts.png", QtCore.QSize(),
                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_parts.setIcon(icon3)
         self.Show_parts.setIconSize(QtCore.QSize(45, 45))
@@ -122,7 +122,7 @@ class Ui_MainWindow(object):
                                       "}\n"
                                       "")
         icon = QtGui.QIcon()
-        icon.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Service.png", QtCore.QSize(),
+        icon.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Service.png", QtCore.QSize(),
                      QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_service.setIcon(icon)
         self.Show_service.setIconSize(QtCore.QSize(45, 45))
@@ -135,7 +135,7 @@ class Ui_MainWindow(object):
         self.Show_employee.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 32px;")
         icon8 = QtGui.QIcon()
-        icon8.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Clients.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Clients.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_employee.setIcon(icon8)
         self.Show_employee.setIconSize(QtCore.QSize(45, 45))
         self.Settings_button = QtWidgets.QPushButton(self.frame)
@@ -147,7 +147,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         icon2 = QtGui.QIcon()
-        icon2.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Profile.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Profile.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Settings_button.setIcon(icon2)
         self.Settings_button.setIconSize(QtCore.QSize(35, 35))
         self.Show_clients = QtWidgets.QPushButton(self.frame)
@@ -159,7 +159,7 @@ class Ui_MainWindow(object):
         self.Show_clients.setIcon(icon8)
         self.Show_clients.setIconSize(QtCore.QSize(45, 45))
         icon7 = QtGui.QIcon()
-        icon7.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Employee.png", QtCore.QSize(),
+        icon7.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Employee.png", QtCore.QSize(),
                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Show_clients.setIcon(icon7)
         self.Show_clients.setIconSize(QtCore.QSize(45, 45))
@@ -182,7 +182,7 @@ class Ui_MainWindow(object):
         self.Filter.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 32px;")
         icon3 = QtGui.QIcon()
-        icon3.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Settings.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Settings.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Filter.setIcon(icon3)
         self.Filter.setIconSize(QtCore.QSize(45, 45))
         self.frame_4 = QtWidgets.QFrame(self.centralwidget)
@@ -207,7 +207,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(49, 49, 49);\n"
 "}")
         icon4 = QtGui.QIcon()
-        icon4.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Close.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Close.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Close_button.setIcon(icon4)
         self.Close_button.setIconSize(QtCore.QSize(18, 17))
         self.line_button = QtWidgets.QPushButton(self.frame_4)
@@ -225,13 +225,13 @@ class Ui_MainWindow(object):
 "	background-color: rgb(49, 49, 49);\n"
 "}")
         icon5 = QtGui.QIcon()
-        icon5.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Line.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Line.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.line_button.setIcon(icon5)
         self.line_button.setIconSize(QtCore.QSize(18, 17))
         self.label = QtWidgets.QLabel(self.frame_4)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QtCore.QRect(10, 3, 111, 21))
-        self.label.setPixmap(QtGui.QPixmap(u"../../Users/gosha/Users/gosha/PycharmProjects/Just Notes/Source/Name.png"))
+        self.label.setPixmap(QtGui.QPixmap(u"../../Users/User/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Name.png"))
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setGeometry(QtCore.QRect(100, 30, 1321, 861))
@@ -319,7 +319,7 @@ class Ui_MainWindow(object):
         self.Add_task.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 32px;")
         icon6 = QtGui.QIcon()
-        icon6.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/AddCollection.png", QtCore.QSize(),QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/AddCollection.png", QtCore.QSize(),QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Add_task.setIcon(icon6)
         self.Add_task.setIconSize(QtCore.QSize(55, 55))
         self.Download = QtWidgets.QPushButton(self.centralwidget)
@@ -329,7 +329,7 @@ class Ui_MainWindow(object):
         self.Download.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 32px;")
         icon5 = QtGui.QIcon()
-        icon5.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Download.png", QtCore.QSize(),QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Download.png", QtCore.QSize(),QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Download.setIcon(icon5)
         self.Download.setIconSize(QtCore.QSize(45, 45))
         MainWindow.setCentralWidget(self.centralwidget)

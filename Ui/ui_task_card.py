@@ -41,7 +41,7 @@ class ui_task(object):
         self.Part_id.setAutoFormatting(QtWidgets.QTextEdit.AutoNone)
         self.Exucutor_id = QtWidgets.QTextBrowser(self.Task_form)
         self.Exucutor_id.setObjectName(u"Exucutor_id")
-        self.Exucutor_id.setGeometry(QtCore.QRect(276, 70, 125, 41))
+        self.Exucutor_id.setGeometry(QtCore.QRect(231, 70, 145, 41))
         self.Exucutor_id.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
@@ -53,7 +53,7 @@ class ui_task(object):
 
         self.License_plate = QtWidgets.QTextBrowser(self.Task_form)
         self.License_plate.setObjectName(u"License_plate")
-        self.License_plate.setGeometry(QtCore.QRect(507, 70, 140, 41))
+        self.License_plate.setGeometry(QtCore.QRect(507, 70, 160, 41))
         self.License_plate.setStyleSheet(u"text-align: center;\n"
                                        "font-family: Myriad Pro;\n"
                                        "color: rgb(123, 115, 27);\n"
@@ -64,7 +64,7 @@ class ui_task(object):
 
         self.Service_id = QtWidgets.QTextBrowser(self.Task_form)
         self.Service_id.setObjectName(u"Service_id")
-        self.Service_id.setGeometry(QtCore.QRect(883, 70, 112, 41))
+        self.Service_id.setGeometry(QtCore.QRect(883, 70, 132, 41))
         self.Service_id.setStyleSheet(u"text-align: center;\n"
                                          "font-family: Myriad Pro;\n"
                                          "color: rgb(123, 115, 27);\n"
@@ -75,7 +75,7 @@ class ui_task(object):
 
         self.Service_id_number = QtWidgets.QTextBrowser(self.Task_form)
         self.Service_id_number.setObjectName(u"License_plate_number")
-        self.Service_id_number.setGeometry(QtCore.QRect(1001, 70, 51, 41))
+        self.Service_id_number.setGeometry(QtCore.QRect(1021, 70, 51, 41))
         self.Service_id_number.setStyleSheet(u"text-align: center;\n"
                                                 "font-family: Myriad Pro;\n"
                                                 "color: rgb(123, 115, 27);\n"
@@ -86,7 +86,7 @@ class ui_task(object):
 
         self.License_plate_number = QtWidgets.QTextBrowser(self.Task_form)
         self.License_plate_number.setObjectName(u"License_plate_number")
-        self.License_plate_number.setGeometry(QtCore.QRect(656, 70, 145, 41))
+        self.License_plate_number.setGeometry(QtCore.QRect(676, 70, 145, 41))
         self.License_plate_number.setStyleSheet(u"text-align: center;\n"
                                            "font-family: Myriad Pro;\n"
                                            "color: rgb(123, 115, 27);\n"
@@ -139,7 +139,7 @@ class ui_task(object):
 "border-style:none ;")
         self.Executor_number = QtWidgets.QTextBrowser(self.Task_form)
         self.Executor_number.setObjectName(u"Executor_number")
-        self.Executor_number.setGeometry(QtCore.QRect(405, 70, 51, 41))
+        self.Executor_number.setGeometry(QtCore.QRect(425, 70, 51, 41))
         self.Executor_number.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
@@ -154,7 +154,7 @@ class ui_task(object):
         self.Change_task.setStyleSheet(u"background-color: rgb(123, 115, 27);\n"
 "border-radius: 20px;")
         icon = QtGui.QIcon()
-        icon.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Settings.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Settings.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Change_task.setIcon(icon)
         self.Change_task.setIconSize(QtCore.QSize(25, 25))
 

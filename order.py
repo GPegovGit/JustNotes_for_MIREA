@@ -1,3 +1,5 @@
+import datetime
+
 import PyQt5
 import psycopg2
 from PyQt5 import QtCore
@@ -160,6 +162,7 @@ class add_task(QMainWindow):
 		else:
 			executor_id = int(self.ui.Executor_id.text())
 
+		idt = 1
 		try:
 			connection = psycopg2.connect(
 				host=config.host,
@@ -173,7 +176,7 @@ class add_task(QMainWindow):
 					query = sql.SQL("SELECT max(order_id) from service_order")
 					cursor.execute(query)
 					maxid = cursor.fetchall()
-					idt = 1
+
 					for row in maxid:
 						idt += row[0]
 				except Exception as _ex:
@@ -182,7 +185,7 @@ class add_task(QMainWindow):
 			print("[INFO] Error. clients view error. Reason: ", _ex)
 
 		task = Task(idt, str(self.ui.Task_id.text()), self.ui.dateTimeEdit.date(), current_user.id, executor_id,
-					str("Active"), self.ui.plate.text(), current_user.service_id, self.ui.customer_id.text(),
+					str("active"), self.ui.plate.text(), current_user.service_id, self.ui.customer_id.text(),
 					self.ui.part_id.text())
 
 		tasks.append(task)
@@ -300,9 +303,13 @@ class task_filter(QMainWindow):
 					filtered_tasks = cursor.fetchall()
 
 					for row in filtered_tasks:
-						format = "dd.MM.yyyy"
-						tempdate = PyQt5.QtCore.QDate.fromString(row[10], format)
-						task = Task(row[5], row[3], tempdate, row[7], row[8], row[6], row[0], row[2], row[1], row[4])
+						v = str(row[10])
+						d = datetime.datetime.strptime(v, '%Y-%m-%d')
+						dateStr = datetime.date.strftime(d, '%Y.%m.%d')
+						format = "yyyy.MM.dd"
+						tempdate = PyQt5.QtCore.QDate.fromString(dateStr, format)
+						task = Task(row[5], row[3], tempdate, row[7], row[8], row[6], row[0], row[2], row[1],
+									row[4])
 						ftasks.append(task)
 
 					for i in range(len(cards)):

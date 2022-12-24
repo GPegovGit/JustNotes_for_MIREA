@@ -82,7 +82,7 @@ class Ui_Login(object):
         self.lineEdit.setObjectName("lineEdit")
         self.gridLayout.addWidget(self.lineEdit, 1, 0, 1, 1)
         self.textBrowser_2 = QtWidgets.QTextBrowser(Login)
-        self.textBrowser_2.setGeometry(QtCore.QRect(165, 110, 251, 41))
+        self.textBrowser_2.setGeometry(QtCore.QRect(165, 110, 285, 41))
         self.textBrowser_2.setStyleSheet("text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"

@@ -75,7 +75,7 @@ class Ui_Download_window(object):
 "}\n"
 "")
         icon = QtGui.QIcon()
-        icon.addFile(u"C:/Users/gosha/PycharmProjects/Just Notes/Source/Download.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addFile(u"C:/Users/User/PycharmProjects/JustNotes_for_MIREA/Source/Download.png", QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.download_all_tasks.setIcon(icon)
         self.download_all_tasks.setIconSize(QtCore.QSize(45, 45))
         self.download_tasks_by_employee = QtWidgets.QPushButton(Download_window)

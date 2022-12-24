@@ -55,15 +55,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 try:
                     if (current_user.role == "employee"):
                         cursor.execute(
-                            f'SELECT * FROM service_order WHERE executor_employee_id =  \'{current_user.id}\'')
+                            f'SELECT * FROM service_order WHERE executor_employee_id =  {current_user.id}')
                         author_tasks = cursor.fetchall()
                         for row in author_tasks:
-                            format = "dd.MM.yyyy"
-                            tempdate = PyQt5.QtCore.QDate.fromString(row[10], format)
+                            v = str(row[10])
+                            d = datetime.datetime.strptime(v, '%Y-%m-%d')
+                            dateStr = datetime.date.strftime(d, '%Y.%m.%d')
+                            format = "yyyy.MM.dd"
+                            tempdate = PyQt5.QtCore.QDate.fromString(dateStr, format)
                             task = Task(row[5], row[3], tempdate, row[7], row[8], row[6], row[0], row[2], row[1],
                                         row[4])
                             tasks.append(task)
                     else:
+                        print(current_user.id)
                         cursor.execute(
                             f'SELECT * FROM service_order')
                         author_tasks = cursor.fetchall()
@@ -460,8 +464,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.w6 = add_client(self)
             self.w6.show()
         elif self.status == 4:
-            self.w6 = add_service(self)
-            self.w6.show()
+            if current_user.login == "postgres":
+                self.w6 = add_service(self)
+                self.w6.show()
+            else:
+                return
         elif self.status == 5:
             self.w6 = add_car(self)
             self.w6.show()

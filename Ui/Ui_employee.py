@@ -54,7 +54,7 @@ class Ui_Part_widget(object):
         self.Email.setAutoFormatting(QTextEdit.AutoNone)
         self.Service = QTextBrowser(self.Part_frame)
         self.Service.setObjectName(u"Service")
-        self.Service.setGeometry(QRect(220, 70, 111, 41))
+        self.Service.setGeometry(QRect(220, 70, 130, 41))
         self.Service.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
@@ -64,7 +64,7 @@ class Ui_Part_widget(object):
 "border-style:none ;")
         self.Service_number = QTextBrowser(self.Part_frame)
         self.Service_number.setObjectName(u"Service_number")
-        self.Service_number.setGeometry(QRect(330, 70, 41, 41))
+        self.Service_number.setGeometry(QRect(350, 70, 41, 41))
         self.Service_number.setStyleSheet(u"text-align: center;\n"
 "font-family: Myriad Pro;\n"
 "color: rgb(123, 115, 27);\n"
